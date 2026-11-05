@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Лабораторная работа 3: ролик на Flexbox и CSS-анимации, вариант 4.">
+  <title>3. Flexbox-ролик - DevSpace</title>
+  <link rel="icon" type="image/png" href="../images/favicon.png">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/flex.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../index.html" aria-label="DevSpace - главная страница">
+        <span class="logo" aria-hidden="true"></span>
+        <span>DevSpace<small>Учебный портал начинающего разработчика</small></span>
+      </a>
+    </div>
+    <nav class="site-nav" aria-label="Основное меню">
+      <div class="container nav-inner">
+        <a href="../index.html">Главная</a> |
+        <a class="active" href="labs.html">Лабораторные</a> |
+        <a href="articles.html">Статьи</a> |
+        <a href="coursework.html">Курсовая</a> |
+        <a href="about.html">О сайте</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container" id="content">
+    <p class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="labs.html">Лабораторные</a> / 3. Flexbox-ролик</p>
+
+    <section class="lab" id="flexbox" aria-labelledby="flexbox-title">
+      <div class="lab-heading">
+        <p class="section-label">Лабораторные</p>
+        <h1 id="flexbox-title">3. Flexbox-ролик</h1>
+        <p class="lab-subtitle">Вариант 4</p>
+      </div>
+
+      <div class="lab-content flex-lab-content">
+        <figure class="flex-demo">
+          <button class="flex-movie" type="button"
+                  aria-label="Анимированный ролик с Маском и ракетой"
+                  aria-describedby="flexbox-help">
+            <span class="flex-movie__idle" aria-hidden="true">
+              <img class="flex-movie__juggler" src="../images/var4/mask3.png" alt="" draggable="false">
+              <img class="flex-movie__companion" src="../images/var4/mask2.png" alt="" draggable="false">
+            </span>
+
+            <span class="flex-movie__hover" aria-hidden="true">
+              <img class="flex-movie__facepalm" src="../images/var4/mask5.png" alt="" draggable="false">
+              <!-- Область наведения неподвижна, поэтому полет не прерывается
+                   при перемещении картинки ракеты от указателя. -->
+              <span class="flex-movie__rocket">
+                <img class="flex-movie__flight" src="../images/var4/mask4.png" alt="" draggable="false">
+              </span>
+              <span class="flex-movie__caption">Как тебе такое?</span>
+            </span>
+
+            <span class="flex-movie__pressed" aria-hidden="true">
+              <span class="flex-movie__portrait">
+                <img class="flex-movie__body" src="../images/var4/finger3.png" alt="" draggable="false">
+                <img class="flex-movie__hand" src="../images/var4/finger2.png" alt="" draggable="false">
+              </span>
+              <span class="flex-movie__reply">Меня не удивишь</span>
+            </span>
+          </button>
+        </figure>
+
+        <div class="flex-help" id="flexbox-help">
+          <h3>Управление роликом</h3>
+          <ol>
+            <li>Наведите мышь на картинку - появятся Маск, ракета и надпись.</li>
+            <li>Наведите на ракету в левом верхнем углу и оставьте указатель на месте - ракета полетит по спирали.</li>
+            <li>Нажмите и удерживайте кнопку мыши на картинке - Маск сменится и начнет махать пальцем, а ролик задрожит вправо-влево.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="box" aria-labelledby="task-title">
+      <h2 id="task-title">Что нужно было сделать</h2>
+      <p>Нужно было сверстать небольшой анимированный ролик размером 200 на 200 пикселей по готовым картинкам. Ролик должен менять кадр при наведении и при нажатии мыши, а элементы внутри него должны быть расставлены через Flexbox. JavaScript в этой работе не используется, все сделано только на CSS. Стили лежат в отдельном файле <code>css/flex.css</code>.</p>
+      <p>Для работы были выданы отдельные картинки с прозрачным фоном:</p>
+      <div class="pics-row">
+        <figure class="pic pic-small">
+          <img src="../images/var4/mask3.png" alt="Человек с маракасами">
+          <figcaption>Для первого кадра</figcaption>
+        </figure>
+        <figure class="pic pic-small">
+          <img src="../images/var4/mask2.png" alt="Ракета с руками и ногами">
+          <figcaption>Для первого кадра</figcaption>
+        </figure>
+        <figure class="pic pic-small">
+          <img src="../images/var4/mask5.png" alt="Человек закрывает лицо рукой">
+          <figcaption>Кадр при наведении</figcaption>
+        </figure>
+        <figure class="pic pic-small">
+          <img src="../images/var4/mask4.png" alt="Маленькая ракета">
+          <figcaption>Ракета для полета</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="box" aria-labelledby="states-title">
+      <h2 id="states-title">Состояния ролика</h2>
+      <p>Всего в ролике четыре состояния. Все кадры лежат друг на друге в одном flex-контейнере, а показывается только нужный. Остальные скрыты с помощью <code>visibility: hidden</code> и <code>opacity: 0</code>.</p>
+      <div class="pics-row">
+        <figure class="pic">
+          <img src="../images/lab3/state-idle.png" alt="Обычное состояние: человек и ракета покачиваются">
+          <figcaption>Обычное состояние</figcaption>
+        </figure>
+        <figure class="pic">
+          <img src="../images/lab3/state-hover.png" alt="Наведение: человек закрывает лицо рукой, ракета и надпись">
+          <figcaption>Наведение на ролик</figcaption>
+        </figure>
+        <figure class="pic">
+          <img src="../images/lab3/state-rocket.png" alt="Ракета летит по спирали вокруг персонажа">
+          <figcaption>Полет ракеты</figcaption>
+        </figure>
+        <figure class="pic">
+          <img src="../images/lab3/state-press.png" alt="Нажатие: человек машет пальцем, сбоку надпись Меня не удивишь">
+          <figcaption>Нажатие мыши</figcaption>
+        </figure>
+      </div>
+      <h3>Обычное состояние</h3>
+      <p>Персонаж и ракета стоят рядом и покачиваются. Для этого написаны две анимации <code>@keyframes</code>, которые повторяются бесконечно. Выравнивание по нижнему краю сделано через <code>align-items: flex-end</code>.</p>
+      <h3>Наведение</h3>
+      <p>Когда мышь попадает на ролик, срабатывает псевдокласс <code>:hover</code>. Первый кадр скрывается, и появляется второй с надписью «Как тебе такое?».</p>
+      <h3>Полет ракеты</h3>
+      <p>Самая интересная часть работы. Ракета движется по кривой, заданной через <code>offset-path</code>. Кривая постепенно сужается к центру, поэтому получается спираль:</p>
+      <pre><code>.flex-movie__rocket:hover .flex-movie__flight {
+  offset-path: path("M 32 44 C 62 10, 151 12, 172 53 ...");
+  offset-rotate: auto 45deg;
+  animation: flex-spiral-flight 5s linear infinite;
+}
+
+@keyframes flex-spiral-flight {
+  from { offset-distance: 0%; }
+  to { offset-distance: 100%; }
+}</code></pre>
+      <p>Сначала полет все время прерывался, потому что ракета улетала из-под указателя и <code>:hover</code> переставал работать. Чтобы это исправить, наведение отслеживается на неподвижном родителе, а двигается только картинка внутри него.</p>
+      <h3>Нажатие</h3>
+      <p>Пока кнопка мыши зажата, работает псевдокласс <code>:active</code>. Появляется третий кадр, рука качается отдельной анимацией, а весь ролик дрожит вправо и влево. Вертикальная надпись «Меня не удивишь» сделана через <code>writing-mode</code>.</p>
+    </section>
+
+    <section class="box" aria-labelledby="result-title">
+      <h2 id="result-title">Вывод</h2>
+      <p>В этой работе получилось попрактиковаться с Flexbox и CSS-анимацией. Оказалось, что простое интерактивное поведение можно сделать совсем без скриптов, только на псевдоклассах. Про свойства Flexbox есть отдельная <a href="article-flex.html">статья с примерами</a>.</p>
+    </section>
+
+    <p class="pager">
+      <a href="lab2.html">&larr; Предыдущая работа: 2. Рисунок CSS</a>
+      <a href="lab6.html">Следующая работа: 6. DOM-тест &rarr;</a>
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>Кухтенко Н.В., DevSpace</span>
+      <span>Учебный проект по дисциплине «Верстка и прототипирование сайтов»</span>
+    </div>
+  </footer>
+</body>
+</html>

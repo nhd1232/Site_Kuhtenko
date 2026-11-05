@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Лабораторная работа 2: рисунок на чистом CSS, вариант 3.">
+  <title>2. Рисунок CSS - DevSpace</title>
+  <link rel="icon" type="image/png" href="../images/favicon.png">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/pic.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../index.html" aria-label="DevSpace - главная страница">
+        <span class="logo" aria-hidden="true"></span>
+        <span>DevSpace<small>Учебный портал начинающего разработчика</small></span>
+      </a>
+    </div>
+    <nav class="site-nav" aria-label="Основное меню">
+      <div class="container nav-inner">
+        <a href="../index.html">Главная</a> |
+        <a class="active" href="labs.html">Лабораторные</a> |
+        <a href="articles.html">Статьи</a> |
+        <a href="coursework.html">Курсовая</a> |
+        <a href="about.html">О сайте</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container" id="content">
+    <p class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="labs.html">Лабораторные</a> / 2. Рисунок CSS</p>
+
+    <section class="lab" aria-labelledby="lab-title">
+      <div class="lab-heading">
+        <p class="section-label">Лабораторные</p>
+        <h1 id="lab-title">2. Рисунок CSS</h1>
+        <p class="lab-subtitle">Вариант 3</p>
+      </div>
+
+      <div class="lab-content lab-row">
+        <figure class="drawing">
+          <div class="picture" role="img" aria-label="Рисунок: облако, два гриба, пчела и трава">
+            <div class="picture__scene" aria-hidden="true">
+              <div class="cloud"></div>
+
+              <div class="mushroom mushroom--large">
+                <div class="mushroom__stem"></div>
+                <div class="mushroom__cap"></div>
+              </div>
+
+              <div class="mushroom mushroom--small">
+                <div class="mushroom__stem"></div>
+                <div class="mushroom__cap"></div>
+              </div>
+
+              <div class="bee">
+                <span class="bee__wing bee__wing--top-left"></span>
+                <span class="bee__wing bee__wing--top-right"></span>
+                <span class="bee__wing bee__wing--bottom-left"></span>
+                <span class="bee__wing bee__wing--bottom-right"></span>
+                <span class="bee__body"></span>
+                <span class="bee__head"></span>
+              </div>
+
+              <div class="grass"></div>
+            </div>
+          </div>
+        </figure>
+
+        <div class="lab-row-text">
+          <p>В этой работе нужно было нарисовать картинку размером 200 на 200 пикселей только средствами CSS, без файлов-изображений. По варианту на картинке есть небо с облаком, два гриба, пчела и трава, а вокруг них розовая рамка.</p>
+          <p>Рисунок слева - это не картинка, а живая верстка. Если открыть инструменты разработчика в браузере, то можно увидеть все блоки, из которых он собран.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="box" aria-labelledby="how-title">
+      <h2 id="how-title">Как устроен рисунок</h2>
+      <p>Вся картинка собрана из обычных блоков <code>div</code> и <code>span</code>. Они лежат внутри одного родителя, у которого стоит <code>position: relative</code>. У самих деталей стоит <code>position: absolute</code>, поэтому каждую можно поставить в нужное место через <code>top</code> и <code>left</code>. Подробнее про это написано в статье <a href="article-box.html">о блочной модели</a>.</p>
+      <p>Порядок слоев задается через <code>z-index</code>. Ниже всех лежит облако, потом идут большой гриб, маленький гриб и пчела, а трава находится сверху и перекрывает нижнюю часть грибов.</p>
+    </section>
+
+    <section class="box" aria-labelledby="steps-title">
+      <h2 id="steps-title">Ход работы</h2>
+      <p>Рисунок делался постепенно, по одному слою. После каждого шага результат сравнивался с заданием.</p>
+      <div class="pics-row">
+        <!-- Шаги сделаны тем же CSS, что и готовый рисунок, в каждом просто меньше деталей -->
+        <figure class="pic drawing-step">
+          <div class="picture" role="img" aria-label="Шаг 1: розовая рамка и голубое небо">
+            <div class="picture__scene" aria-hidden="true"></div>
+          </div>
+          <figcaption>Шаг 1. Рамка и небо</figcaption>
+        </figure>
+        <figure class="pic drawing-step">
+          <div class="picture" role="img" aria-label="Шаг 2: добавлены облако и трава">
+            <div class="picture__scene" aria-hidden="true">
+              <div class="cloud"></div>
+              <div class="grass"></div>
+            </div>
+          </div>
+          <figcaption>Шаг 2. Облако и трава</figcaption>
+        </figure>
+        <figure class="pic drawing-step">
+          <div class="picture" role="img" aria-label="Шаг 3: добавлены два гриба">
+            <div class="picture__scene" aria-hidden="true">
+              <div class="cloud"></div>
+              <div class="mushroom mushroom--large">
+                <div class="mushroom__stem"></div>
+                <div class="mushroom__cap"></div>
+              </div>
+              <div class="mushroom mushroom--small">
+                <div class="mushroom__stem"></div>
+                <div class="mushroom__cap"></div>
+              </div>
+              <div class="grass"></div>
+            </div>
+          </div>
+          <figcaption>Шаг 3. Грибы</figcaption>
+        </figure>
+        <figure class="pic drawing-step">
+          <div class="picture" role="img" aria-label="Шаг 4: добавлена пчела, рисунок готов">
+            <div class="picture__scene" aria-hidden="true">
+              <div class="cloud"></div>
+              <div class="mushroom mushroom--large">
+                <div class="mushroom__stem"></div>
+                <div class="mushroom__cap"></div>
+              </div>
+              <div class="mushroom mushroom--small">
+                <div class="mushroom__stem"></div>
+                <div class="mushroom__cap"></div>
+              </div>
+              <div class="bee">
+                <span class="bee__wing bee__wing--top-left"></span>
+                <span class="bee__wing bee__wing--top-right"></span>
+                <span class="bee__wing bee__wing--bottom-left"></span>
+                <span class="bee__wing bee__wing--bottom-right"></span>
+                <span class="bee__body"></span>
+                <span class="bee__head"></span>
+              </div>
+              <div class="grass"></div>
+            </div>
+          </div>
+          <figcaption>Шаг 4. Пчела</figcaption>
+        </figure>
+      </div>
+      <h3>Шаг 1. Рамка и небо</h3>
+      <p>Розовая рамка получилась за счет внутреннего отступа 10 пикселей у внешнего блока. Внутри него лежит сцена размером 180 на 180 пикселей с линейным градиентом от синего к голубому.</p>
+      <h3>Шаг 2. Облако и трава</h3>
+      <p>Облако состоит из одного овала и двух псевдоэлементов <code>::before</code> и <code>::after</code>. У всех трех частей стоит <code>border-radius: 50%</code>. Траву оказалось удобно сделать одним блоком: полоски получаются с помощью повторяющегося градиента, а зубцы вырезаются через <code>clip-path</code>:</p>
+      <pre><code>.picture .grass {
+  height: 44px;
+  background: repeating-linear-gradient(135deg, #32ce28 0 6px, #198c21 6px 11px);
+  clip-path: polygon(
+    0 68%, 12% 5%, 23% 62%, 38% 2%,
+    49% 66%, 63% 8%, 76% 66%, 88% 3%,
+    100% 64%, 100% 100%, 0 100%
+  );
+}</code></pre>
+      <h3>Шаг 3. Грибы</h3>
+      <p>Каждый гриб состоит из ножки и шляпки. У шляпки скруглены только верхние углы (<code>border-radius: 50% 50% 0 0</code>), поэтому получается полукруг, а объем создает градиент. Маленький гриб повернут на 25 градусов через <code>transform: rotate(25deg)</code>.</p>
+      <h3>Шаг 4. Пчела</h3>
+      <p>Пчела - самая мелкая часть рисунка. Туловище и голова сделаны овалами, глаз и второе пятно на голове сделаны псевдоэлементами. Четыре крыла поворачиваются вокруг точки, заданной через <code>transform-origin</code>, чтобы они расходились от одного места. В конце вся пчела целиком повернута на -30 градусов.</p>
+    </section>
+
+    <section class="box" aria-labelledby="result-title">
+      <h2 id="result-title">Вывод</h2>
+      <p>Работа помогла разобраться с абсолютным позиционированием и слоями. Стало понятно, что даже из простых прямоугольников с помощью скруглений, поворотов и градиентов можно собрать довольно сложный рисунок. Стили рисунка лежат в отдельном файле <code>css/pic.css</code> и не мешают остальному сайту.</p>
+    </section>
+
+    <p class="pager">
+      <a href="labs.html">&larr; Все лабораторные</a>
+      <a href="lab3.html">Следующая работа: 3. Flexbox-ролик &rarr;</a>
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>Кухтенко Н.В., DevSpace</span>
+      <span>Учебный проект по дисциплине «Верстка и прототипирование сайтов»</span>
+    </div>
+  </footer>
+</body>
+</html>

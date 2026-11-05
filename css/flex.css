@@ -1,0 +1,236 @@
+.flex-lab-content {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.flex-demo {
+  flex: 0 0 200px;
+  margin: 0;
+}
+
+.flex-help {
+  flex: 1 1 250px;
+  max-width: 520px;
+  line-height: 1.5;
+}
+
+.flex-help h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+.flex-help ol {
+  margin: 0;
+  padding-left: 22px;
+}
+
+.flex-help li + li {
+  margin-top: 8px;
+}
+
+/* Сам компонент - flex-контейнер фиксированного базового размера. */
+.flex-movie,
+.flex-movie * {
+  box-sizing: border-box;
+}
+
+.flex-movie {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 200px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 0;
+  background: linear-gradient(#10118d 0%, #536cbb 22%, #fff 52%, #77f13d 100%);
+  color: #161616;
+  font: inherit;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.flex-movie:focus-visible {
+  outline: 3px solid #214f91;
+  outline-offset: 4px;
+}
+
+.flex-movie img {
+  display: block;
+  max-width: none;
+  pointer-events: none;
+}
+
+.flex-movie__idle,
+.flex-movie__hover,
+.flex-movie__pressed {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-movie__idle {
+  align-items: flex-end;
+  padding-bottom: 12px;
+}
+
+.flex-movie__juggler {
+  width: 67px;
+  height: auto;
+  transform-origin: 50% 94%;
+  animation: flex-musk-sway 1.8s ease-in-out infinite;
+}
+
+.flex-movie__companion {
+  width: 85px;
+  height: auto;
+  animation: flex-rocket-bob 1.8s ease-in-out infinite;
+}
+
+.flex-movie__hover,
+.flex-movie__pressed {
+  visibility: hidden;
+  opacity: 0;
+}
+
+/* Наведение на весь ролик меняет персонажей и показывает надпись. */
+.flex-movie:is(:hover, :focus-visible) .flex-movie__idle {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.flex-movie:is(:hover, :focus-visible) .flex-movie__hover {
+  visibility: visible;
+  opacity: 1;
+}
+
+.flex-movie__facepalm {
+  width: 100px;
+  height: auto;
+  margin-top: -1px;
+}
+
+.flex-movie__caption {
+  position: absolute;
+  right: 0;
+  bottom: 9px;
+  left: 0;
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+.flex-movie__rocket {
+  position: absolute;
+  top: 22px;
+  left: 10px;
+  z-index: 1;
+  width: 44px;
+  height: 45px;
+}
+
+.flex-movie__flight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 44px;
+  height: auto;
+}
+
+/* Кривая последовательно сужается к центру: получается спираль.
+   Начальная точка совпадает с центром неподвижной области наведения. */
+.flex-movie__rocket:hover .flex-movie__flight,
+.flex-movie:focus-visible .flex-movie__flight {
+  top: -22px;
+  left: -10px;
+  offset-path: path("M 32 44 C 62 10, 151 12, 172 53 C 202 109, 163 160, 110 162 C 53 167, 25 135, 32 92 C 38 52, 101 38, 134 59 C 174 84, 153 131, 116 134 C 79 141, 59 116, 68 91 C 78 66, 114 64, 125 84 C 140 110, 108 124, 95 106 C 88 95, 96 87, 103 94 C 108 101, 101 104, 100 100");
+  offset-rotate: auto 45deg;
+  animation: flex-spiral-flight 5s linear infinite;
+}
+
+/* :active действует только во время удержания мыши или пробела. */
+.flex-movie:active {
+  animation: flex-movie-shake 0.18s ease-in-out infinite;
+}
+
+.flex-movie:active .flex-movie__idle,
+.flex-movie:active .flex-movie__hover {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.flex-movie:active .flex-movie__pressed {
+  visibility: visible;
+  opacity: 1;
+}
+
+.flex-movie__portrait {
+  position: relative;
+  width: 145px;
+  height: 136px;
+  margin-left: 14px;
+  margin-top: 6px;
+}
+
+.flex-movie__body {
+  width: 100%;
+  height: auto;
+}
+
+.flex-movie__hand {
+  position: absolute;
+  top: 47%;
+  left: 0;
+  width: 30%;
+  height: auto;
+  transform-origin: 68% 90%;
+}
+
+.flex-movie:active .flex-movie__hand {
+  animation: flex-finger-wag 0.55s ease-in-out infinite;
+}
+
+.flex-movie__reply {
+  position: absolute;
+  top: 14px;
+  bottom: 14px;
+  left: 8px;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 20px;
+  line-height: 1.1;
+}
+
+@keyframes flex-musk-sway {
+  0%, 100% { transform: rotate(-7deg); }
+  50% { transform: rotate(7deg); }
+}
+
+@keyframes flex-rocket-bob {
+  0%, 100% { transform: translateY(-5px) rotate(2deg); }
+  50% { transform: translateY(3px) rotate(-2deg); }
+}
+
+@keyframes flex-spiral-flight {
+  from { offset-distance: 0%; }
+  to { offset-distance: 100%; }
+}
+
+@keyframes flex-finger-wag {
+  0%, 100% { transform: rotate(-16deg); }
+  50% { transform: rotate(16deg); }
+}
+
+@keyframes flex-movie-shake {
+  0%, 100% { transform: translateX(-1.5px); }
+  50% { transform: translateX(1.5px); }
+}

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Основы Flexbox: оси, justify-content, align-items, flex-wrap и свойство flex.">
+  <title>Основы Flexbox - DevSpace</title>
+  <link rel="icon" type="image/png" href="../images/favicon.png">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../index.html" aria-label="DevSpace - главная страница">
+        <span class="logo" aria-hidden="true"></span>
+        <span>DevSpace<small>Учебный портал начинающего разработчика</small></span>
+      </a>
+    </div>
+    <nav class="site-nav" aria-label="Основное меню">
+      <div class="container nav-inner">
+        <a href="../index.html">Главная</a> |
+        <a href="labs.html">Лабораторные</a> |
+        <a class="active" href="articles.html">Статьи</a> |
+        <a href="coursework.html">Курсовая</a> |
+        <a href="about.html">О сайте</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container" id="content">
+    <p class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="articles.html">Статьи</a> / Основы Flexbox</p>
+
+    <article class="box">
+      <h1>Основы Flexbox</h1>
+      <p>Flexbox - это способ расставлять элементы внутри контейнера. Раньше для этого использовали таблицы и float, и даже простое центрирование могло оказаться проблемой. С Flexbox многие такие задачи решаются двумя-тремя строчками. Все это используется в <a href="lab3.html">лабораторной работе с роликом</a> и в верстке этого сайта.</p>
+
+      <h2>Контейнер и оси</h2>
+      <figure class="pic pic-right">
+        <img src="../images/articles/flex-axes.png" alt="Схема flex-контейнера с тремя блоками, главной и поперечной осями">
+        <figcaption>Рис. 1. Главная и поперечная оси</figcaption>
+      </figure>
+      <p>Чтобы все заработало, родителю нужно поставить <code>display: flex</code>. Его прямые потомки сразу становятся в ряд и называются flex-элементами.</p>
+      <p>В контейнере есть две оси. Главная ось идет слева направо, вдоль нее выстраиваются блоки. Поперечная ось идет сверху вниз. Если поставить <code>flex-direction: column</code>, то оси поменяются местами, и блоки встанут в столбик. Именно поэтому важно не путать свойства: одно работает вдоль главной оси, другое вдоль поперечной.</p>
+
+      <h2>justify-content</h2>
+      <figure class="pic pic-left">
+        <img src="../images/articles/flex-justify.png" alt="Четыре варианта расстановки блоков вдоль главной оси">
+        <figcaption>Рис. 2. Значения justify-content</figcaption>
+      </figure>
+      <p>Это свойство расставляет блоки вдоль главной оси. Основные значения:</p>
+      <ul>
+        <li><code>flex-start</code> - все блоки в начале, это значение по умолчанию;</li>
+        <li><code>center</code> - по центру;</li>
+        <li><code>space-between</code> - крайние блоки у краев, остальное место делится между блоками;</li>
+        <li><code>space-around</code> - свободное место есть и вокруг каждого блока.</li>
+      </ul>
+      <p>В подвале этого сайта стоит <code>space-between</code>, поэтому две надписи разъехались в разные стороны.</p>
+
+      <h2>align-items</h2>
+      <figure class="pic pic-right">
+        <img src="../images/articles/flex-align.png" alt="Три варианта выравнивания блоков по поперечной оси">
+        <figcaption>Рис. 3. Значения align-items</figcaption>
+      </figure>
+      <p>Это свойство выравнивает блоки по поперечной оси. По умолчанию стоит <code>stretch</code>, поэтому все блоки в ряду растягиваются на одну высоту. Значение <code>flex-start</code> прижимает их к верху, а <code>center</code> ставит посередине.</p>
+      <p>Самый известный пример - центрирование блока сразу по двум направлениям:</p>
+      <pre><code>.parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}</code></pre>
+
+      <h2>Перенос на новую строку</h2>
+      <figure class="pic pic-left">
+        <img src="../images/articles/flex-wrap.png" alt="Сравнение nowrap и wrap: в первом случае блоки сжаты, во втором перенесены вниз">
+        <figcaption>Рис. 4. Разница между nowrap и wrap</figcaption>
+      </figure>
+      <p>По умолчанию блоки стоят в один ряд и сжимаются, если им не хватает места. С <code>flex-wrap: wrap</code> лишние блоки переходят на следующую строку. Расстояние между ними удобно задавать свойством <code>gap</code>.</p>
+
+      <h2>Свойство flex</h2>
+      <p>У самих элементов есть сокращенное свойство <code>flex</code>, в котором указываются три значения: можно ли блоку растягиваться, можно ли сжиматься и какой у него начальный размер. Например, карточки на главной странице сделаны так:</p>
+      <pre><code>.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.card {
+  flex: 1 1 240px;
+}</code></pre>
+      <p>Каждая карточка начинается с ширины 240 пикселей и делит оставшееся место поровну с соседями. На широком экране они стоят в ряд, а на узком сами переносятся вниз. Медиа-запросы для этого не нужны.</p>
+    </article>
+
+    <p class="pager">
+      <a href="article-box.html">&larr; Предыдущая статья: Блочная модель CSS</a>
+      <a href="articles.html">Все статьи &rarr;</a>
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>Кухтенко Н.В., DevSpace</span>
+      <span>Учебный проект по дисциплине «Верстка и прототипирование сайтов»</span>
+    </div>
+  </footer>
+</body>
+</html>

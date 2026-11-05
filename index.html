@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="DevSpace - учебный портал начинающего разработчика: лабораторные работы по вёрстке, статьи о программировании и примеры HTML, CSS и JavaScript.">
+  <title>DevSpace - учебный портал начинающего разработчика</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/pic.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="DevSpace - главная страница">
+        <span class="logo" aria-hidden="true"></span>
+        <span>DevSpace<small>Учебный портал начинающего разработчика</small></span>
+      </a>
+    </div>
+    <nav class="site-nav" aria-label="Основное меню">
+      <div class="container nav-inner">
+        <a class="active" href="index.html">Главная</a> |
+        <a href="pages/labs.html">Лабораторные</a> |
+        <a href="pages/articles.html">Статьи</a> |
+        <a href="pages/coursework.html">Курсовая</a> |
+        <a href="pages/about.html">О сайте</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container" id="content">
+    <section class="intro" id="about" aria-labelledby="about-title">
+      <h1 id="about-title">DevSpace: учебный портал начинающего разработчика</h1>
+      <p>Мое личное пространство для изучения веб-разработки и программирования. Здесь я собираю лабораторные работы, пробую разные технологии и сохраняю полезные примеры.</p>
+    </section>
+
+    <section class="box" aria-labelledby="what-title">
+      <h2 id="what-title">Что есть на сайте</h2>
+      <p>На сайте есть три основных раздела. В разделе <a href="pages/labs.html">«Лабораторные»</a> собраны выполненные работы: у каждой своя страница с заданием, самой работой, описанием хода работы и скриншотами. В разделе <a href="pages/articles.html">«Статьи»</a> лежат короткие конспекты по темам, которые встречались на занятиях. Туда удобно заглядывать, когда нужно быстро вспомнить свойство или посмотреть готовый пример. Раздел <a href="pages/coursework.html">«Курсовая»</a> пока почти пустой, в нем появится курсовая работа, когда она будет готова.</p>
+      <p>Все страницы оформлены в одном стиле и сверстаны без таблиц. Основные блоки расставлены с помощью Flexbox, а картинки в тексте обтекаются через float. Логотип в шапке сделан только средствами CSS, об этом подробнее написано на странице <a href="pages/about.html">«О сайте»</a>.</p>
+      <p>Материалы на сайте будут постепенно пополняться: после каждой новой лабораторной работы здесь появляется ее страница, а если тема оказалась сложной, то к ней добавляется короткая статья с примерами.</p>
+    </section>
+
+    <section class="box" id="labs" aria-labelledby="labs-title">
+      <h2 id="labs-title">Лабораторные работы</h2>
+      <div class="cards">
+        <article class="card">
+          <a class="card-drawing" href="pages/lab2.html">
+            <div class="picture" role="img" aria-label="Рисунок на CSS: облако, два гриба, пчела и трава">
+              <div class="picture__scene" aria-hidden="true">
+                <div class="cloud"></div>
+                <div class="mushroom mushroom--large">
+                  <div class="mushroom__stem"></div>
+                  <div class="mushroom__cap"></div>
+                </div>
+                <div class="mushroom mushroom--small">
+                  <div class="mushroom__stem"></div>
+                  <div class="mushroom__cap"></div>
+                </div>
+                <div class="bee">
+                  <span class="bee__wing bee__wing--top-left"></span>
+                  <span class="bee__wing bee__wing--top-right"></span>
+                  <span class="bee__wing bee__wing--bottom-left"></span>
+                  <span class="bee__wing bee__wing--bottom-right"></span>
+                  <span class="bee__body"></span>
+                  <span class="bee__head"></span>
+                </div>
+                <div class="grass"></div>
+              </div>
+            </div>
+          </a>
+          <h3><a href="pages/lab2.html">2. Рисунок CSS</a></h3>
+          <p>Картинка с грибами и пчелой, нарисованная только блоками и стилями, без файлов-изображений.</p>
+        </article>
+        <article class="card">
+          <a href="pages/lab3.html"><img src="images/lab3/state-idle.png" alt="Кадр из Flexbox-ролика: человек и ракета на цветном фоне"></a>
+          <h3><a href="pages/lab3.html">3. Flexbox-ролик</a></h3>
+          <p>Небольшой ролик на Flexbox и CSS-анимации, который реагирует на наведение и нажатие мыши.</p>
+        </article>
+        <article class="card">
+          <a href="pages/lab6.html"><img src="images/lab6/test-start.png" alt="DOM-тест: вопрос и четыре варианта ответа"></a>
+          <h3><a href="pages/lab6.html">6. DOM-тест «Слэнг»</a></h3>
+          <p>Тест на JavaScript, в котором вопросы и ответы создаются на странице прямо во время работы.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="box" id="articles" aria-labelledby="articles-title">
+      <h2 id="articles-title">Статьи</h2>
+      <div class="cards">
+        <article class="card">
+          <a href="pages/article-html.html"><img src="images/articles/html-tree.png" alt="Дерево тегов HTML-страницы"></a>
+          <h3><a href="pages/article-html.html">Структура HTML-страницы</a></h3>
+          <p>Из чего состоит страница и зачем нужны теги header, nav, main и footer.</p>
+        </article>
+        <article class="card">
+          <a href="pages/article-box.html"><img src="images/articles/box-model.png" alt="Схема блочной модели: контент, padding, border и margin"></a>
+          <h3><a href="pages/article-box.html">Блочная модель CSS</a></h3>
+          <p>Как считается размер блока и чем отличаются внутренний и внешний отступы.</p>
+        </article>
+        <article class="card">
+          <a href="pages/article-flex.html"><img src="images/articles/flex-axes.png" alt="Схема осей Flexbox: главная и поперечная"></a>
+          <h3><a href="pages/article-flex.html">Основы Flexbox</a></h3>
+          <p>Главные свойства Flexbox с простыми схемами и примерами.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="box" aria-labelledby="learn-title">
+      <h2 id="learn-title">Что я сейчас изучаю</h2>
+      <ul>
+        <li><b>HTML</b> - правильная структура страницы и семантические теги.</li>
+        <li><b>CSS</b> - позиционирование, Flexbox, анимации и адаптивность.</li>
+        <li><b>JavaScript</b> - работа с DOM и обработка событий.</li>
+        <li><b>Git и GitHub</b> - хранение проекта и размещение сайта на хостинге.</li>
+        <p>Каждая новая лабораторная работа помогает лучше понять одну из этих тем. Сначала я читаю теорию, потом пробую все на небольших примерах, а самое полезное сохраняю на этом сайте, чтобы позже быстро найти нужное.</p>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>Кухтенко Н.В., DevSpace</span>
+      <span>Учебный проект по дисциплине «Верстка и прототипирование сайтов»</span>
+    </div>
+  </footer>
+</body>
+</html>

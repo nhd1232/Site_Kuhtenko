@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Как устроен сайт DevSpace: макеты страниц, логотип на CSS и структура файлов.">
+  <title>О сайте - DevSpace</title>
+  <link rel="icon" type="image/png" href="../images/favicon.png">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../index.html" aria-label="DevSpace - главная страница">
+        <span class="logo" aria-hidden="true"></span>
+        <span>DevSpace<small>Учебный портал начинающего разработчика</small></span>
+      </a>
+    </div>
+    <nav class="site-nav" aria-label="Основное меню">
+      <div class="container nav-inner">
+        <a href="../index.html">Главная</a> |
+        <a href="labs.html">Лабораторные</a> |
+        <a href="articles.html">Статьи</a> |
+        <a href="coursework.html">Курсовая</a> |
+        <a class="active" href="about.html">О сайте</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container" id="content">
+    <p class="breadcrumbs"><a href="../index.html">Главная</a> / О сайте</p>
+
+    <section class="intro">
+      <h1>О сайте</h1>
+      <p>DevSpace - это мой учебный сайт. На этой странице написано, как сайт устроен.</p>
+    </section>
+
+    <section class="box" aria-labelledby="design-title">
+      <h2 id="design-title">Макет и дизайн</h2>
+      <p>Сначала были набросаны простые схемы главной страницы и страницы с заданием. Хотелось сделать сайт без лишних украшений, чтобы все внимание было на содержимом: светло-серый фон, белые блоки с тонкой рамкой и синие заголовки. На всех страницах есть одинаковые шапка с логотипом, меню и подвал, а внутри разделов добавлена строка навигации, чтобы было понятно, где вы находитесь.</p>
+      <div class="pics-row">
+        <figure class="pic">
+          <img src="../images/about/mockup-home.png" alt="Макет главной страницы: шапка, меню, описание, карточки лабораторных и статей, подвал">
+          <figcaption>Рис. 1. Макет главной страницы</figcaption>
+        </figure>
+        <figure class="pic">
+          <img src="../images/about/mockup-lab.png" alt="Макет страницы с заданием: шапка, меню, описание, работа, ход работы и подвал">
+          <figcaption>Рис. 2. Макет страницы с заданием</figcaption>
+        </figure>
+      </div>
+      <p>Таблицы для верстки на сайте не используются. Общая раскладка сделана с помощью Flexbox, а картинки в статьях обтекаются текстом через <code>float</code>. На маленьких экранах блоки переносятся друг под друга, а картинки перестают обтекаться и занимают отдельную строку.</p>
+    </section>
+
+    <section class="box" aria-labelledby="logo-title">
+      <h2 id="logo-title">Логотип</h2>
+      <figure class="pic pic-right">
+        <img src="../images/about/logo-steps.png" alt="Три этапа логотипа: пустой квадрат, квадрат с уголком и квадрат с уголком и чертой">
+        <figcaption>Рис. 3. Этапы создания логотипа</figcaption>
+      </figure>
+      <p>Логотип сделан только средствами CSS, никаких файлов-картинок в нем нет. Его размер 40 на 40 пикселей. По смыслу это значок командной строки: уголок и подчеркивание, как будто программа ждет, что вы начнете вводить команду. Такой значок подходит для сайта про программирование.</p>
+      <p>Логотип состоит из одного элемента <code>span</code> и двух псевдоэлементов:</p>
+      <ul>
+        <li>сам <code>span</code> - квадрат с голубым фоном и синей рамкой;</li>
+        <li><code>::before</code> - маленький квадрат, у которого оставлены только две рамки, он повернут на 45 градусов и превращается в уголок;</li>
+        <li><code>::after</code> - узкий прямоугольник, который играет роль курсора.</li>
+      </ul>
+      <p>Значок на вкладке браузера повторяет логотип, но это отдельный файл <code>images/favicon.png</code>, потому что браузер не умеет показывать на вкладке элементы, сделанные на CSS.</p>
+    </section>
+
+    <section class="box" aria-labelledby="structure-title">
+      <h2 id="structure-title">Структура сайта</h2>
+      <p>С главной страницы можно попасть в четыре раздела. В разделах «Лабораторные» и «Статьи» есть отдельные страницы для каждого материала:</p>
+      <figure class="pic">
+        <img src="../images/about/site-map.png" alt="Карта сайта: главная страница, четыре раздела и вложенные страницы лабораторных и статей">
+        <figcaption>Рис. 4. Логическая структура сайта</figcaption>
+      </figure>
+      <p>Файлы тоже разложены по папкам, чтобы в них было легко ориентироваться. У каждой лабораторной свой файл стилей, поэтому стили разных работ не мешают друг другу и подключаются только там, где нужны:</p>
+      <pre><code>index.html        главная страница
+pages/            все остальные страницы
+css/style.css     общие стили сайта
+css/pic.css       стили лабораторной 2
+css/flex.css      стили лабораторной 3
+css/dom-test.css  стили лабораторной 6
+js/dom-test.js    скрипт лабораторной 6
+images/           картинки по разделам</code></pre>
+    </section>
+
+    <section class="box" aria-labelledby="next-title">
+      <h2 id="next-title">Что дальше</h2>
+      <p>На сайте будут появляться новые лабораторные и курсовая работа. Код сайта хранится в <a href="https://github.com/nhd1232/Site_Kuhtenko">репозитории на GitHub</a>.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>Кухтенко Н.В., DevSpace</span>
+      <span>Учебный проект по дисциплине «Верстка и прототипирование сайтов»</span>
+    </div>
+  </footer>
+</body>
+</html>

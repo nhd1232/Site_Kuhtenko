@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Лабораторная работа 6: тест на JavaScript с работой через DOM, вариант 1.">
+  <title>6. DOM-тест «Слэнг» - DevSpace</title>
+  <link rel="icon" type="image/png" href="../images/favicon.png">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dom-test.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../index.html" aria-label="DevSpace - главная страница">
+        <span class="logo" aria-hidden="true"></span>
+        <span>DevSpace<small>Учебный портал начинающего разработчика</small></span>
+      </a>
+    </div>
+    <nav class="site-nav" aria-label="Основное меню">
+      <div class="container nav-inner">
+        <a href="../index.html">Главная</a> |
+        <a class="active" href="labs.html">Лабораторные</a> |
+        <a href="articles.html">Статьи</a> |
+        <a href="coursework.html">Курсовая</a> |
+        <a href="about.html">О сайте</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container" id="content">
+    <p class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="labs.html">Лабораторные</a> / 6. DOM-тест «Слэнг»</p>
+
+    <section class="lab" id="dom-test" aria-labelledby="dom-test-title">
+      <div class="lab-heading">
+        <p class="section-label">Лабораторные</p>
+        <h1 id="dom-test-title">6. DOM-тест «Слэнг»</h1>
+        <p class="lab-subtitle">Вариант 1</p>
+      </div>
+
+      <div class="lab-content">
+        <div class="dom-test">
+          <button class="btn" id="dom-test-btn" type="button">Вопрос</button>
+
+          <!-- надпись появляется, когда вопросы закончились -->
+          <p class="end-message" id="dom-test-end">Вопросы закончились</p>
+
+          <!-- статистика по окончании теста -->
+          <div class="stats" id="dom-test-stats"></div>
+
+          <!-- область для динамического добавления элементов -->
+          <div class="area" id="dom-test-area"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="box" aria-labelledby="task-title">
+      <h2 id="task-title">Что нужно было сделать</h2>
+      <p>В этой работе нужно было написать тест на JavaScript, в котором все вопросы и ответы добавляются на страницу через DOM. В HTML лежит только кнопка «Вопрос» и пустые блоки. Тема теста по варианту - современный слэнг, всего в нем пять вопросов.</p>
+      <p>Как работает тест:</p>
+      <ul>
+        <li>по нажатию на кнопку появляется случайный вопрос и четыре ответа в случайном порядке;</li>
+        <li>пока не выбран ответ, следующий вопрос взять нельзя;</li>
+        <li>при правильном ответе блок увеличивается и показывает пояснение, остальные блоки по очереди уезжают вправо;</li>
+        <li>при неправильном ответе вправо уезжают все блоки;</li>
+        <li>рядом с вопросом появляется зеленая галочка или красный крестик;</li>
+        <li>в конце выводится надпись «Вопросы закончились» и число правильных ответов;</li>
+        <li>после окончания можно нажать на любой вопрос и посмотреть правильный ответ.</li>
+      </ul>
+      <figure class="pic">
+        <img src="../images/lab6/test-start.png" alt="Первый вопрос теста и четыре варианта ответа в ряд">
+        <figcaption>Рис. 1. Вопрос с вариантами ответа</figcaption>
+      </figure>
+    </section>
+
+    <section class="box" aria-labelledby="how-title">
+      <h2 id="how-title">Как это сделано</h2>
+      <h3>Данные</h3>
+      <p>Все вопросы лежат в одном массиве объектов. У каждого вопроса есть текст и массив ответов, а у правильного ответа дополнительно стоит <code>correct: true</code> и есть пояснение. Благодаря этому новый вопрос легко добавить, не меняя остальной код.</p>
+      <h3>Случайный порядок</h3>
+      <p>Для перемешивания написана отдельная функция. Она используется и для вопросов, и для ответов, и возвращает новый массив, поэтому исходные данные не портятся:</p>
+      <pre><code>function shuffle(arr) {
+    const result = arr.slice();
+    for (let i = result.length - 1; i &gt; 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [result[i], result[j]] = [result[j], result[i]];
+    }
+    return result;
+}</code></pre>
+      <h3>Выбор ответа</h3>
+      <figure class="pic pic-left pic-wide">
+        <img src="../images/lab6/test-correct.png" alt="Правильный ответ увеличен, обведен зеленой рамкой и показывает пояснение">
+        <figcaption>Рис. 2. Выбран правильный ответ</figcaption>
+      </figure>
+      <p>Каждый блок ответа создается через <code>document.createElement</code>, и на него сразу вешается обработчик нажатия. После выбора ответа ряду добавляется класс <code>locked</code>, поэтому нажать второй раз уже нельзя.</p>
+      <p>Вид блоков меняется только через классы. Скрипт добавляет класс <code>correct</code> или <code>wrong</code>, а все остальное описано в CSS: увеличение, цвет рамки и плавность движения.</p>
+      <h3>Анимация по очереди</h3>
+      <figure class="pic pic-right pic-wide">
+        <img src="../images/lab6/test-wrong.png" alt="Неправильный ответ обведен красной рамкой">
+        <figcaption>Рис. 3. Выбран неправильный ответ</figcaption>
+      </figure>
+      <p>Больше всего времени заняла последовательность анимаций. Функция <code>slideAway</code> с помощью <code>setTimeout</code> по очереди добавляет блокам класс <code>gone</code>, с которым они уезжают вправо. Она возвращает момент, когда уехал последний блок, и по нему запускается следующий шаг. Так скрипт всегда знает, когда можно показать значок и включить кнопку.</p>
+      <h3>Результат</h3>
+      <figure class="pic pic-left pic-wide">
+        <img src="../images/lab6/test-finish.png" alt="Итог теста: статистика и список вопросов, у одного открыт правильный ответ">
+        <figcaption>Рис. 4. Конец теста и просмотр правильного ответа</figcaption>
+      </figure>
+      <p>Когда вопросы заканчиваются, кнопка остается выключенной и показывается статистика. Если нажать на вопрос, под ним откроется блок с правильным ответом и пояснением. Повторное нажатие закрывает его, а при открытии другого вопроса предыдущий блок тоже закрывается.</p>
+    </section>
+
+    <section class="box" aria-labelledby="result-title">
+      <h2 id="result-title">Вывод</h2>
+      <p>В этой работе удалось на практике разобраться с созданием элементов из скрипта, обработкой событий и классами. Также стало понятно, что логику лучше держать в JavaScript, а внешний вид в CSS. Скрипт работы лежит в файле <code>js/dom-test.js</code>, а стили в файле <code>css/dom-test.css</code>.</p>
+    </section>
+
+    <p class="pager">
+      <a href="lab3.html">&larr; Предыдущая работа: 3. Flexbox-ролик</a>
+      <a href="labs.html">Все лабораторные &rarr;</a>
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>Кухтенко Н.В., DevSpace</span>
+      <span>Учебный проект по дисциплине «Верстка и прототипирование сайтов»</span>
+    </div>
+  </footer>
+
+  <script src="../js/dom-test.js"></script>
+</body>
+</html>

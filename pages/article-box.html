@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Блочная модель CSS: содержимое, отступы, рамка, box-sizing и позиционирование.">
+  <title>Блочная модель CSS - DevSpace</title>
+  <link rel="icon" type="image/png" href="../images/favicon.png">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../index.html" aria-label="DevSpace - главная страница">
+        <span class="logo" aria-hidden="true"></span>
+        <span>DevSpace<small>Учебный портал начинающего разработчика</small></span>
+      </a>
+    </div>
+    <nav class="site-nav" aria-label="Основное меню">
+      <div class="container nav-inner">
+        <a href="../index.html">Главная</a> |
+        <a href="labs.html">Лабораторные</a> |
+        <a class="active" href="articles.html">Статьи</a> |
+        <a href="coursework.html">Курсовая</a> |
+        <a href="about.html">О сайте</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container" id="content">
+    <p class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="articles.html">Статьи</a> / Блочная модель CSS</p>
+
+    <article class="box">
+      <h1>Блочная модель CSS</h1>
+      <p>Для браузера любой элемент на странице - это прямоугольник. Даже если он выглядит как круг, как шляпка гриба в <a href="lab2.html">моем рисунке на CSS</a>, на самом деле это прямоугольник со скругленными углами. Правила, по которым считается размер такого прямоугольника, называются блочной моделью.</p>
+
+      <h2>Из чего состоит блок</h2>
+      <figure class="pic pic-right">
+        <img src="../images/articles/box-model.png" alt="Схема блочной модели: контент, padding, border и margin">
+        <figcaption>Рис. 1. Части блока</figcaption>
+      </figure>
+      <p>Блок состоит из четырех слоев, которые идут от центра к краю:</p>
+      <ul>
+        <li><b>content</b> - само содержимое, его размер задается через <code>width</code> и <code>height</code>;</li>
+        <li><b>padding</b> - внутренний отступ между содержимым и рамкой, на него распространяется фон блока;</li>
+        <li><b>border</b> - рамка;</li>
+        <li><b>margin</b> - внешний отступ, он отодвигает соседние элементы и всегда прозрачный.</li>
+      </ul>
+      <p>Посмотреть все эти слои можно в браузере. Нужно нажать F12, выбрать элемент и открыть вкладку со стилями. Там будет такая же схема с реальными числами.</p>
+
+      <h2>Почему блок оказался шире</h2>
+      <figure class="pic pic-left">
+        <img src="../images/articles/box-sizing.png" alt="Сравнение: при content-box итоговая ширина 250 пикселей, при border-box ровно 200">
+        <figcaption>Рис. 2. Одна и та же ширина при разном box-sizing</figcaption>
+      </figure>
+      <p>По умолчанию <code>width</code> задает только ширину содержимого, а внутренние отступы и рамка прибавляются сверху. Если поставить ширину 200 пикселей, отступы по 20 и рамку по 5, то блок на экране займет 250 пикселей. Из-за этого блоки часто перестают помещаться в ряд.</p>
+      <p>Чтобы считать было проще, используют такое правило:</p>
+      <pre><code>* {
+  box-sizing: border-box;
+}</code></pre>
+      <p>Теперь <code>width</code> означает полную ширину вместе с отступами и рамкой, а содержимое просто становится меньше.</p>
+
+      <h2>Схлопывание отступов</h2>
+      <figure class="pic pic-right">
+        <img src="../images/articles/box-margin.png" alt="Два блока друг над другом: отступы 20 и 30 пикселей дают расстояние 30 пикселей">
+        <figcaption>Рис. 3. От двух отступов остается больший</figcaption>
+      </figure>
+      <p>Вертикальные внешние отступы соседних блоков не складываются. Если у верхнего блока стоит <code>margin-bottom: 20px</code>, а у нижнего <code>margin-top: 30px</code>, то между ними будет 30 пикселей, а не 50. Это называется схлопыванием.</p>
+      <p>С горизонтальными отступами такого не происходит. Внутри flex-контейнера отступы тоже не схлопываются, поэтому там считать проще.</p>
+
+      <h2>Позиционирование</h2>
+      <figure class="pic pic-left">
+        <img src="../images/articles/box-position.png" alt="Дочерний блок с абсолютным позиционированием внутри родителя, координаты считаются от края родителя">
+        <figcaption>Рис. 4. Координаты считаются от родителя</figcaption>
+      </figure>
+      <p>Обычно блоки идут друг за другом, но элемент можно вынуть из потока с помощью <code>position: absolute</code>. Тогда он не занимает места, а его положение задается через <code>top</code>, <code>left</code>, <code>right</code> и <code>bottom</code>.</p>
+      <p>Координаты считаются от ближайшего родителя, у которого указан <code>position: relative</code>. Если такого родителя нет, то они будут считаться от всей страницы. Это самая частая ошибка: забыть про <code>relative</code>, а потом искать, куда улетел блок.</p>
+    </article>
+
+    <p class="pager">
+      <a href="article-html.html">&larr; Предыдущая статья: Структура HTML-страницы</a>
+      <a href="article-flex.html">Следующая статья: Основы Flexbox &rarr;</a>
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>Кухтенко Н.В., DevSpace</span>
+      <span>Учебный проект по дисциплине «Верстка и прототипирование сайтов»</span>
+    </div>
+  </footer>
+</body>
+</html>

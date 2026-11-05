@@ -1,0 +1,237 @@
+.picture,
+.picture *,
+.picture *::before,
+.picture *::after {
+  box-sizing: border-box;
+}
+
+.picture {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  padding: 10px;
+  overflow: hidden;
+  background: #db79c6;
+}
+
+.picture__scene {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  overflow: hidden;
+  background: linear-gradient(#6387e7, #b0c7ed);
+}
+
+.picture .cloud {
+  position: absolute;
+  z-index: 1;
+  top: 9px;
+  left: 27px;
+  width: 116px;
+  height: 30px;
+  border-radius: 50%;
+  background: #dce8ff;
+}
+
+.picture .cloud::before,
+.picture .cloud::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+}
+
+.picture .cloud::before {
+  top: -8px;
+  left: 24px;
+  width: 53px;
+  height: 31px;
+  background: #dce8ff;
+}
+
+.picture .cloud::after {
+  top: 12px;
+  left: 48px;
+  width: 45px;
+  height: 19px;
+  background: #dce8ff;
+}
+
+.picture .mushroom {
+  position: absolute;
+  z-index: 2;
+}
+
+.picture .mushroom--large {
+  top: 61px;
+  left: -5px;
+  width: 94px;
+  height: 110px;
+}
+
+.picture .mushroom__stem {
+  position: absolute;
+  border: 2px solid #885048;
+  background: #e0cbbb;
+}
+
+.picture .mushroom--large .mushroom__stem {
+  top: 43px;
+  left: 26px;
+  width: 39px;
+  height: 65px;
+  border-radius: 0 0 45% 45%;
+}
+
+.picture .mushroom__cap {
+  position: absolute;
+  border: 1px solid #79463b;
+  background: linear-gradient(#b98678, #86483b);
+}
+
+.picture .mushroom--large .mushroom__cap {
+  top: 0;
+  left: 0;
+  width: 94px;
+  height: 53px;
+  border-radius: 50% 50% 0 0;
+}
+
+.picture .mushroom--small {
+  z-index: 3;
+  top: 99px;
+  left: 64px;
+  width: 64px;
+  height: 75px;
+  transform: rotate(25deg);
+}
+
+.picture .mushroom--small .mushroom__stem {
+  top: 27px;
+  left: 20px;
+  width: 28px;
+  height: 48px;
+  border-radius: 0 0 40% 40%;
+}
+
+.picture .mushroom--small .mushroom__cap {
+  top: 0;
+  left: 0;
+  width: 65px;
+  height: 37px;
+  border-radius: 50% 50% 0 0;
+}
+
+.picture .bee {
+  position: absolute;
+  z-index: 4;
+  top: 46px;
+  left: 89px;
+  width: 65px;
+  height: 55px;
+  transform: rotate(-30deg);
+}
+
+.picture .bee__wing {
+  position: absolute;
+  border: 1px solid #315ccd;
+  background: #7396ed;
+}
+
+.picture .bee__wing--top-left {
+  top: 1px;
+  left: 23px;
+  width: 14px;
+  height: 29px;
+  border-radius: 50%;
+  transform: rotate(-31deg);
+  transform-origin: bottom center;
+}
+
+.picture .bee__wing--top-right {
+  top: 0;
+  left: 32px;
+  width: 14px;
+  height: 30px;
+  border-radius: 50%;
+  transform: rotate(19deg);
+  transform-origin: bottom center;
+}
+
+.picture .bee__wing--bottom-left {
+  top: 31px;
+  left: 23px;
+  width: 14px;
+  height: 28px;
+  border-radius: 50%;
+  transform: rotate(24deg);
+  transform-origin: top center;
+}
+
+.picture .bee__wing--bottom-right {
+  top: 29px;
+  left: 33px;
+  width: 14px;
+  height: 27px;
+  border-radius: 50%;
+  transform: rotate(-25deg);
+  transform-origin: top center;
+}
+
+.picture .bee__body {
+  position: absolute;
+  top: 23px;
+  left: 12px;
+  width: 46px;
+  height: 17px;
+  border: 1px solid #b59714;
+  border-radius: 50%;
+  background: #e7c51c;
+}
+
+.picture .bee__head {
+  position: absolute;
+  top: 25px;
+  left: 2px;
+  width: 17px;
+  height: 17px;
+  border: 1px solid #ad8d13;
+  border-radius: 50%;
+  background: #e7c622;
+}
+
+.picture .bee__head::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 4px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #25220e;
+}
+
+.picture .bee__head::after {
+  content: "";
+  position: absolute;
+  top: 9px;
+  left: 3px;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #655518;
+}
+
+.picture .grass {
+  position: absolute;
+  z-index: 5;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 44px;
+  background: repeating-linear-gradient(135deg, #32ce28 0 6px, #198c21 6px 11px);
+  clip-path: polygon(
+    0 68%, 12% 5%, 23% 62%, 38% 2%,
+    49% 66%, 63% 8%, 76% 66%, 88% 3%,
+    100% 64%, 100% 100%, 0 100%
+  );
+}

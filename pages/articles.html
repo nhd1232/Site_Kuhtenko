@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Короткие статьи и конспекты по HTML и CSS для начинающих.">
+  <title>Статьи - DevSpace</title>
+  <link rel="icon" type="image/png" href="../images/favicon.png">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../index.html" aria-label="DevSpace - главная страница">
+        <span class="logo" aria-hidden="true"></span>
+        <span>DevSpace<small>Учебный портал начинающего разработчика</small></span>
+      </a>
+    </div>
+    <nav class="site-nav" aria-label="Основное меню">
+      <div class="container nav-inner">
+        <a href="../index.html">Главная</a> |
+        <a href="labs.html">Лабораторные</a> |
+        <a class="active" href="articles.html">Статьи</a> |
+        <a href="coursework.html">Курсовая</a> |
+        <a href="about.html">О сайте</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container" id="content">
+    <p class="breadcrumbs"><a href="../index.html">Главная</a> / Статьи</p>
+
+    <section class="intro">
+      <h1>Статьи</h1>
+      <figure class="pic pic-right">
+        <img src="../images/articles/html-skeleton.png" alt="Пример кода простой HTML-страницы">
+        <figcaption>Рис. 1. Пример простой страницы из первой статьи</figcaption>
+      </figure>
+      <p>Здесь собраны мои конспекты по темам, которые встречались при выполнении лабораторных работ. Это не полноценные учебники, а короткие заметки своими словами: основные понятия, небольшие примеры кода и схемы. Статьи написаны в первую очередь для себя, чтобы не искать одно и то же по несколько раз.</p>
+      <p>Если вы тоже только начинаете заниматься версткой, то эти заметки могут быть полезны. Читать их лучше по порядку: сначала про структуру страницы, потом про размеры блоков и в конце про расстановку элементов. Подробные описания всех свойств можно найти в справочнике MDN Web Docs.</p>
+      <p>Список будет пополняться. Следующие заметки планируются про CSS-анимацию и работу с DOM на JavaScript. В каждой статье есть схемы и небольшие куски кода, которые можно сразу попробовать у себя на странице.</p>
+      <p>Многие свойства из этих статей используются в лабораторных работах и в верстке этого сайта. Поэтому после чтения можно открыть нужную работу и посмотреть, как они выглядят на настоящей странице, а заодно изучить код через инструменты разработчика.</p>
+    </section>
+
+    <section class="box" aria-labelledby="art1-title">
+      <h2 id="art1-title"><a href="article-html.html">Структура HTML-страницы</a></h2>
+      <figure class="pic pic-left">
+        <img src="../images/articles/html-layout.png" alt="Схема страницы: шапка, меню, основная часть, боковая колонка и подвал">
+        <figcaption>Рис. 2. Основные части страницы</figcaption>
+      </figure>
+      <p>С чего начинается любая страница, что находится в <code>head</code> и <code>body</code>, чем блочные элементы отличаются от строчных и зачем нужны семантические теги вроде <code>header</code>, <code>nav</code>, <code>main</code> и <code>footer</code>.</p>
+      <p>Эта статья пригодится в самом начале, когда нужно разобраться, из чего вообще состоит страница и как правильно расположить ее части.</p>
+      <p><a href="article-html.html">Читать статью</a></p>
+    </section>
+
+    <section class="box" aria-labelledby="art2-title">
+      <h2 id="art2-title"><a href="article-box.html">Блочная модель CSS</a></h2>
+      <figure class="pic pic-left">
+        <img src="../images/articles/box-model.png" alt="Схема блочной модели: контент, padding, border и margin">
+        <figcaption>Рис. 3. Части блока</figcaption>
+      </figure>
+      <p>Из чего складывается размер блока, чем <code>padding</code> отличается от <code>margin</code>, почему блок иногда оказывается шире, чем задано, и как это исправить через <code>box-sizing</code>. Здесь же написано про схлопывание отступов и абсолютное позиционирование.</p>
+      <p>Эти темы пригодились в лабораторной работе с <a href="lab2.html">рисунком на CSS</a>.</p>
+      <p><a href="article-box.html">Читать статью</a></p>
+    </section>
+
+    <section class="box" aria-labelledby="art3-title">
+      <h2 id="art3-title"><a href="article-flex.html">Основы Flexbox</a></h2>
+      <figure class="pic pic-left">
+        <img src="../images/articles/flex-axes.png" alt="Схема осей Flexbox: главная и поперечная">
+        <figcaption>Рис. 4. Оси flex-контейнера</figcaption>
+      </figure>
+      <p>Что такое главная и поперечная оси, как работают <code>justify-content</code> и <code>align-items</code>, как переносить блоки на новую строку и что означает свойство <code>flex</code> у элементов.</p>
+      <p>На этих свойствах построены карточки на главной странице этого сайта и <a href="lab3.html">Flexbox-ролик</a>.</p>
+      <p><a href="article-flex.html">Читать статью</a></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>Кухтенко Н.В., DevSpace</span>
+      <span>Учебный проект по дисциплине «Верстка и прототипирование сайтов»</span>
+    </div>
+  </footer>
+</body>
+</html>

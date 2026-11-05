@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Из чего состоит HTML-страница: основные теги, блочные и строчные элементы, семантическая разметка.">
+  <title>Структура HTML-страницы - DevSpace</title>
+  <link rel="icon" type="image/png" href="../images/favicon.png">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../index.html" aria-label="DevSpace - главная страница">
+        <span class="logo" aria-hidden="true"></span>
+        <span>DevSpace<small>Учебный портал начинающего разработчика</small></span>
+      </a>
+    </div>
+    <nav class="site-nav" aria-label="Основное меню">
+      <div class="container nav-inner">
+        <a href="../index.html">Главная</a> |
+        <a href="labs.html">Лабораторные</a> |
+        <a class="active" href="articles.html">Статьи</a> |
+        <a href="coursework.html">Курсовая</a> |
+        <a href="about.html">О сайте</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container" id="content">
+    <p class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="articles.html">Статьи</a> / Структура HTML-страницы</p>
+
+    <article class="box">
+      <h1>Структура HTML-страницы</h1>
+      <p>HTML - это язык разметки, с помощью которого браузеру объясняют, что находится на странице: где заголовок, где абзац, где картинка, а где меню. Внешний вид задается уже отдельно, с помощью CSS.</p>
+
+      <h2>Минимальная страница</h2>
+      <figure class="pic pic-right">
+        <img src="../images/articles/html-skeleton.png" alt="Пример кода простой HTML-страницы">
+        <figcaption>Рис. 1. Код простой страницы</figcaption>
+      </figure>
+      <p>Любая страница начинается со строки <code>&lt;!DOCTYPE html&gt;</code>. Она сообщает браузеру, что документ написан на современной версии HTML. Дальше идет тег <code>html</code>, в котором лежит все остальное. В атрибуте <code>lang</code> указывается язык страницы.</p>
+      <p>Внутри <code>html</code> есть две большие части. В <code>head</code> находится служебная информация, которую пользователь на самой странице не видит: кодировка, заголовок вкладки, описание для поисковиков и ссылки на файлы стилей. В <code>body</code> находится все, что отображается на экране.</p>
+      <p>Если не указать <code>charset="UTF-8"</code>, то русский текст может превратиться в непонятные символы. На этом легко попасться в самом начале.</p>
+
+      <h2>Страница как дерево</h2>
+      <figure class="pic pic-left">
+        <img src="../images/articles/html-tree.png" alt="Дерево тегов: html содержит head и body, в body лежат header, main и footer">
+        <figcaption>Рис. 2. Теги вложены друг в друга</figcaption>
+      </figure>
+      <p>Теги вкладываются друг в друга, поэтому страницу удобно представлять в виде дерева. Вверху стоит <code>html</code>, от него идут ветки <code>head</code> и <code>body</code>, а дальше все остальные элементы.</p>
+      <p>Браузер строит такое же дерево, когда загружает страницу. Оно называется DOM, и именно с ним работает JavaScript. Как это выглядит на практике, можно посмотреть в <a href="lab6.html">лабораторной работе про DOM-тест</a>.</p>
+
+      <h2>Блочные и строчные элементы</h2>
+      <figure class="pic pic-right">
+        <img src="../images/articles/html-block-inline.png" alt="Блочные элементы стоят друг под другом, строчные идут внутри текста">
+        <figcaption>Рис. 3. Разница между блочными и строчными элементами</figcaption>
+      </figure>
+      <p>Блочные элементы, например <code>div</code>, <code>p</code> и заголовки, занимают всю доступную ширину и начинаются с новой строки. Им можно задавать ширину, высоту и отступы.</p>
+      <p>Строчные элементы, например <code>span</code> и <code>a</code>, идут прямо внутри текста и занимают столько места, сколько нужно их содержимому. Ширина и высота на них не действуют. Если они все-таки нужны, можно поставить <code>display: inline-block</code>.</p>
+
+      <h2>Семантические теги</h2>
+      <figure class="pic pic-left">
+        <img src="../images/articles/html-layout.png" alt="Схема страницы: header, nav, main, aside и footer">
+        <figcaption>Рис. 4. Части страницы и подходящие для них теги</figcaption>
+      </figure>
+      <p>Всю страницу можно собрать из одних <code>div</code>, и выглядеть она будет так же. Но лучше использовать теги, название которых говорит о содержимом:</p>
+      <ul>
+        <li><code>header</code> - шапка с логотипом;</li>
+        <li><code>nav</code> - меню;</li>
+        <li><code>main</code> - основное содержимое, на странице оно одно;</li>
+        <li><code>section</code> и <code>article</code> - разделы и отдельные материалы;</li>
+        <li><code>aside</code> - боковая колонка;</li>
+        <li><code>footer</code> - подвал.</li>
+      </ul>
+      <p>Такой код проще читать, а поисковикам и программам для чтения с экрана легче понять страницу. Этот сайт тоже размечен такими тегами.</p>
+    </article>
+
+    <p class="pager">
+      <a href="articles.html">&larr; Все статьи</a>
+      <a href="article-box.html">Следующая статья: Блочная модель CSS &rarr;</a>
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>Кухтенко Н.В., DevSpace</span>
+      <span>Учебный проект по дисциплине «Верстка и прототипирование сайтов»</span>
+    </div>
+  </footer>
+</body>
+</html>

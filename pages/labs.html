@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Список лабораторных работ по дисциплине Верстка и прототипирование сайтов.">
+  <title>Лабораторные работы - DevSpace</title>
+  <link rel="icon" type="image/png" href="../images/favicon.png">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/pic.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../index.html" aria-label="DevSpace - главная страница">
+        <span class="logo" aria-hidden="true"></span>
+        <span>DevSpace<small>Учебный портал начинающего разработчика</small></span>
+      </a>
+    </div>
+    <nav class="site-nav" aria-label="Основное меню">
+      <div class="container nav-inner">
+        <a href="../index.html">Главная</a> |
+        <a class="active" href="labs.html">Лабораторные</a> |
+        <a href="articles.html">Статьи</a> |
+        <a href="coursework.html">Курсовая</a> |
+        <a href="about.html">О сайте</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container" id="content">
+    <p class="breadcrumbs"><a href="../index.html">Главная</a> / Лабораторные</p>
+
+    <section class="intro">
+      <h1>Лабораторные работы</h1>
+      <figure class="pic pic-right">
+        <img src="../images/about/mockup-lab.png" alt="Макет страницы с заданием: шапка, меню, описание, работа, ход работы и подвал">
+        <figcaption>Рис. 1. Как устроена страница лабораторной</figcaption>
+      </figure>
+      <p>Здесь собраны лабораторные работы по верстке. У каждой работы есть отдельная страница, на которой можно посмотреть саму работу в живом виде, прочитать задание и описание того, как она выполнялась.</p>
+      <p>Все страницы работ устроены одинаково. Сверху находится сама работа, которую можно сразу попробовать, ниже идет задание и подробное описание со скриншотами, а в конце написан вывод. Внизу страницы есть ссылки для перехода к предыдущей и следующей работе. Так в любой работе легко найти нужную часть.</p>
+    </section>
+
+    <section class="box" aria-labelledby="lab2-title">
+      <h2 id="lab2-title"><a href="lab2.html">2. Рисунок CSS</a></h2>
+      <figure class="pic pic-left pic-drawing">
+        <div class="picture" role="img" aria-label="Рисунок на CSS: облако, два гриба, пчела и трава">
+          <div class="picture__scene" aria-hidden="true">
+            <div class="cloud"></div>
+            <div class="mushroom mushroom--large">
+              <div class="mushroom__stem"></div>
+              <div class="mushroom__cap"></div>
+            </div>
+            <div class="mushroom mushroom--small">
+              <div class="mushroom__stem"></div>
+              <div class="mushroom__cap"></div>
+            </div>
+            <div class="bee">
+              <span class="bee__wing bee__wing--top-left"></span>
+              <span class="bee__wing bee__wing--top-right"></span>
+              <span class="bee__wing bee__wing--bottom-left"></span>
+              <span class="bee__wing bee__wing--bottom-right"></span>
+              <span class="bee__body"></span>
+              <span class="bee__head"></span>
+            </div>
+            <div class="grass"></div>
+          </div>
+        </div>
+        <figcaption>Рис. 2. Готовый рисунок</figcaption>
+      </figure>
+      <p><b>Вариант 3.</b> На рисунке небо с облаком, два гриба, пчела и трава. Каждая деталь - это обычный блок, который поставлен на свое место через абсолютное позиционирование. Готовые изображения не использовались.</p>
+      <p><b>Что использовалось:</b> position, z-index, border-radius, transform, псевдоэлементы, градиенты и clip-path.</p>
+      <p>Самым сложным оказалось подобрать форму крыльев пчелы и зубцы травы. Значения пришлось много раз менять и смотреть, что получается.</p>
+      <p><a href="lab2.html">Открыть работу</a></p>
+    </section>
+
+    <section class="box" aria-labelledby="lab3-title">
+      <h2 id="lab3-title"><a href="lab3.html">3. Flexbox-ролик</a></h2>
+      <figure class="pic pic-left">
+        <img src="../images/lab3/state-hover.png" alt="Кадр ролика: человек закрывает лицо рукой, рядом ракета и надпись Как тебе такое">
+        <figcaption>Рис. 3. Ролик при наведении мыши</figcaption>
+      </figure>
+      <p><b>Вариант 4.</b> Небольшой ролик без единой строчки JavaScript. В обычном состоянии персонажи покачиваются, при наведении появляются другая картинка и надпись, а при нажатии кадр меняется еще раз. Если навести мышь на ракету, она летит по спирали.</p>
+      <p><b>Что использовалось:</b> display: flex, псевдоклассы :hover и :active, @keyframes, offset-path и writing-mode.</p>
+      <p>В этой работе стало понятно, как удобно центрировать элементы через Flexbox и как много можно сделать одними только стилями.</p>
+      <p><a href="lab3.html">Открыть работу</a></p>
+    </section>
+
+    <section class="box" aria-labelledby="lab6-title">
+      <h2 id="lab6-title"><a href="lab6.html">6. DOM-тест «Слэнг»</a></h2>
+      <figure class="pic pic-left">
+        <img src="../images/lab6/test-finish.png" alt="Итог теста: количество правильных ответов и список вопросов с отметками">
+        <figcaption>Рис. 4. Результат после прохождения теста</figcaption>
+      </figure>
+      <p><b>Вариант 1.</b> Тест из пяти вопросов про современный слэнг. В HTML-файле лежит только заготовка, а вопросы и ответы создаются скриптом. Порядок вопросов и ответов каждый раз случайный. В конце показывается статистика, а по нажатию на вопрос можно посмотреть правильный ответ.</p>
+      <p><b>Что использовалось:</b> createElement, addEventListener, classList, setTimeout и CSS-переходы.</p>
+      <p>Главная сложность была в том, чтобы блоки уезжали строго по очереди, а следующий вопрос открывался только после окончания анимации.</p>
+      <p><a href="lab6.html">Открыть работу</a></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>Кухтенко Н.В., DevSpace</span>
+      <span>Учебный проект по дисциплине «Верстка и прототипирование сайтов»</span>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,246 @@
+.dom-test {
+  --blue: #214f91;
+  --blue-dark: #183b6d;
+  --blue-light: #d7e5f5;
+  --border: #cccccc;
+  --good: #2e9b2a;
+  --bad: #d32027;
+
+  --slide-time: 0.7s;   /* время, за которое блок уезжает вправо */
+
+  padding: 16px 18px 20px;
+  overflow: hidden;     /* уехавшие вправо блоки не дают горизонтальную прокрутку */
+  background: #f4f4f4;
+  border: 1px solid #aaa;
+  line-height: 1.35;
+}
+
+.dom-test,
+.dom-test * {
+  box-sizing: border-box;
+}
+
+.dom-test * {
+  margin: 0;
+  padding: 0;
+}
+
+/* Кнопка «Вопрос» */
+.dom-test .btn {
+  min-width: 160px;
+  padding: 7px 24px;
+  border: none;
+  background: var(--blue);
+  color: white;
+  font-family: inherit;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.dom-test .btn:hover {
+  background: var(--blue-dark);
+}
+
+.dom-test .btn:active {
+  transform: scale(0.97);
+}
+
+.dom-test .btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Надпись «Вопросы закончились» и статистика */
+.dom-test .end-message,
+.dom-test .stats {
+  display: none;
+}
+
+.dom-test .end-message.show {
+  display: block;
+  margin-top: 16px;
+  color: var(--blue);
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.dom-test .stats.show {
+  display: block;
+  margin-top: 8px;
+  padding: 8px 14px;
+  background: white;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--blue);
+}
+
+/* Область с вопросами (вопросы идут вертикально) */
+.dom-test .area {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.dom-test .question-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Блок вопроса */
+.dom-test .question {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 8px 14px;
+  background: white;
+  border: 1px solid var(--border);
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.dom-test .marker {
+  display: none;
+  flex-shrink: 0;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.dom-test .marker.show {
+  display: block;
+}
+
+.dom-test .marker.good { color: var(--good); }
+.dom-test .marker.bad  { color: var(--bad); }
+
+/* после окончания теста на вопрос можно нажать */
+.dom-test .area.finished .question {
+  cursor: pointer;
+}
+
+/* Ответы (располагаются горизонтально) */
+.dom-test .answers {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 20px 8px 14px;
+}
+
+.dom-test .answer {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 10px 12px;
+  background: var(--blue-light);
+  font-size: 15px;
+  text-align: center;
+  cursor: pointer;
+  /* рамка делается через box-shadow, чтобы ее увеличение не сдвигало соседей */
+  box-shadow: 0 0 0 1px var(--blue);
+  transition:
+    transform var(--slide-time) ease-in,
+    opacity var(--slide-time) ease-in,
+    background 0.3s;
+}
+
+/* при наведении увеличивается рамочка */
+.dom-test .answer:hover {
+  box-shadow: 0 0 0 4px var(--blue);
+}
+
+/* при нажатии блок немного увеличивается */
+.dom-test .answer:active {
+  transform: scale(1.06);
+  transition-duration: 0.1s;
+}
+
+/* пояснение скрыто, пока ответ не выбран правильно */
+.dom-test .answer__explain {
+  display: none;
+  font-size: 13px;
+}
+
+/* правильно выбранный ответ увеличивается и показывает пояснение */
+.dom-test .answer.correct {
+  position: relative;
+  z-index: 1;
+  transform: scale(1.12);
+  background: white;
+  box-shadow: 0 0 0 3px var(--good);
+}
+
+.dom-test .answer.correct .answer__explain {
+  display: block;
+  margin-top: 6px;
+}
+
+.dom-test .answer.wrong {
+  box-shadow: 0 0 0 3px var(--bad);
+}
+
+/* после выбора больше ничего нажимать нельзя */
+.dom-test .answers.locked .answer {
+  pointer-events: none;
+}
+
+/* блок уезжает вправо */
+.dom-test .answer.gone {
+  transform: translateX(110vw);
+  opacity: 0;
+}
+
+.dom-test .answer.correct.gone {
+  transform: translateX(110vw) scale(1.12);
+}
+
+/* Блок с правильным ответом (просмотр после теста) */
+.dom-test .review {
+  margin: 8px 0 4px 24px;
+  padding: 8px 14px;
+  background: var(--blue-light);
+  border: 1px solid var(--border);
+  font-size: 15px;
+}
+
+.dom-test .review__title {
+  font-weight: bold;
+}
+
+.dom-test .review__explain {
+  margin-top: 4px;
+  font-size: 13px;
+}
+
+/* Адаптивность под разные экраны компьютера */
+@media (max-width: 860px) {
+  .dom-test .answers {
+    flex-wrap: wrap;
+  }
+
+  .dom-test .answer {
+    flex: 1 1 40%;
+  }
+}
+
+@media (max-width: 560px) {
+  .dom-test {
+    padding: 12px 10px 16px;
+  }
+
+  .dom-test .btn {
+    width: 100%;
+  }
+
+  .dom-test .answers {
+    gap: 14px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .dom-test .review {
+    margin-left: 0;
+  }
+}
