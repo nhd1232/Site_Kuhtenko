@@ -11,18 +11,20 @@
 </head>
 <body>
   <header class="site-header">
+    <input class="menu-toggle" id="menu-toggle" type="checkbox">
     <div class="container header-inner">
       <a class="brand" href="../index.html" aria-label="DevSpace - главная страница">
         <span class="logo" aria-hidden="true"></span>
         <span>DevSpace<small>Учебный портал начинающего разработчика</small></span>
       </a>
+      <label class="menu-btn" for="menu-toggle">Меню</label>
     </div>
     <nav class="site-nav" aria-label="Основное меню">
       <div class="container nav-inner">
-        <a href="../index.html">Главная</a> |
-        <a class="active" href="labs.html">Лабораторные</a> |
-        <a href="articles.html">Статьи</a> |
-        <a href="coursework.html">Курсовая</a> |
+        <a href="../index.html">Главная</a>
+        <a class="active" href="labs.html">Лабораторные</a>
+        <a href="articles.html">Статьи</a>
+        <a href="coursework.html">Курсовая</a>
         <a href="about.html">О сайте</a>
       </div>
     </nav>
@@ -106,30 +108,28 @@
     <section class="box" aria-labelledby="states-title">
       <h2 id="states-title">Состояния ролика</h2>
       <p>Всего в ролике четыре состояния. Все кадры лежат друг на друге в одном flex-контейнере, а показывается только нужный. Остальные скрыты с помощью <code>visibility: hidden</code> и <code>opacity: 0</code>.</p>
-      <div class="pics-row">
-        <figure class="pic">
-          <img src="../images/lab3/state-idle.png" alt="Обычное состояние: человек и ракета покачиваются">
-          <figcaption>Обычное состояние</figcaption>
-        </figure>
-        <figure class="pic">
-          <img src="../images/lab3/state-hover.png" alt="Наведение: человек закрывает лицо рукой, ракета и надпись">
-          <figcaption>Наведение на ролик</figcaption>
-        </figure>
-        <figure class="pic">
-          <img src="../images/lab3/state-rocket.png" alt="Ракета летит по спирали вокруг персонажа">
-          <figcaption>Полет ракеты</figcaption>
-        </figure>
-        <figure class="pic">
-          <img src="../images/lab3/state-press.png" alt="Нажатие: человек машет пальцем, сбоку надпись Меня не удивишь">
-          <figcaption>Нажатие мыши</figcaption>
-        </figure>
-      </div>
       <h3>Обычное состояние</h3>
+      <figure class="pic pic-left pic-drawing">
+        <img src="../images/lab3/state-idle.png" alt="Обычное состояние: человек и ракета покачиваются">
+        <figcaption>Обычное состояние</figcaption>
+      </figure>
       <p>Персонаж и ракета стоят рядом и покачиваются. Для этого написаны две анимации <code>@keyframes</code>, которые повторяются бесконечно. Выравнивание по нижнему краю сделано через <code>align-items: flex-end</code>.</p>
+      <p>Кадр собран как обычный flex-контейнер, поэтому картинки сами встают в ряд, а <code>justify-content: center</code> ставит их по центру. Снизу задан внутренний отступ 12 пикселей, чтобы персонажи не стояли прямо на краю ролика. Анимации немного разные: человек поворачивается на 7 градусов в каждую сторону, а ракета еще и двигается вверх и вниз через <code>translateY</code>. Длительность у них одинаковая, 1.8 секунды, поэтому они движутся в одном ритме. Точка поворота человека находится почти у него под ногами, так что он покачивается, а не вращается вокруг своего центра.</p>
       <h3>Наведение</h3>
+      <figure class="pic pic-right pic-drawing">
+        <img src="../images/lab3/state-hover.png" alt="Наведение: человек закрывает лицо рукой, ракета и надпись">
+        <figcaption>Наведение на ролик</figcaption>
+      </figure>
       <p>Когда мышь попадает на ролик, срабатывает псевдокласс <code>:hover</code>. Первый кадр скрывается, и появляется второй с надписью «Как тебе такое?».</p>
+      <p>У каждого кадра стоит <code>position: absolute</code> и <code>inset: 0</code>, то есть он занимает весь ролик целиком. Поэтому при смене кадра ничего не прыгает и размер ролика не меняется. Надпись тоже поставлена абсолютно: она прижата к низу кадра и растянута на всю ширину, а по центру текст стоит благодаря <code>text-align: center</code>.</p>
+      <p>Этот же кадр показывается, если выбрать ролик с клавиатуры клавишей Tab. Для этого вместе с <code>:hover</code> в селекторе указан <code>:focus-visible</code>. Здесь же в левом верхнем углу появляется маленькая ракета, с которой связан следующий шаг.</p>
       <h3>Полет ракеты</h3>
-      <p>Самая интересная часть работы. Ракета движется по кривой, заданной через <code>offset-path</code>. Кривая постепенно сужается к центру, поэтому получается спираль:</p>
+      <figure class="pic pic-left pic-drawing">
+        <img src="../images/lab3/state-rocket.png" alt="Ракета летит по спирали вокруг персонажа">
+        <figcaption>Полет ракеты</figcaption>
+      </figure>
+      <p>Самая интересная часть работы. Ракета движется по кривой, заданной через <code>offset-path</code>. Свойство <code>offset-distance</code> показывает, какую часть пути ракета уже прошла: 0% - это начало кривой, а 100% - конец. Анимация просто меняет это значение за 5 секунд, а <code>linear</code> делает скорость одинаковой на всем пути.</p>
+      <p>Чтобы ракета не летела боком, используется <code>offset-rotate: auto 45deg</code>. Значение <code>auto</code> поворачивает картинку вдоль кривой, а к нему добавляется еще 45 градусов. Сама кривая записана в виде нескольких отрезков с командой <code>C</code>. Она постепенно сужается к центру, поэтому получается спираль:</p>
       <pre><code>.flex-movie__rocket:hover .flex-movie__flight {
   offset-path: path("M 32 44 C 62 10, 151 12, 172 53 ...");
   offset-rotate: auto 45deg;
@@ -142,7 +142,12 @@
 }</code></pre>
       <p>Сначала полет все время прерывался, потому что ракета улетала из-под указателя и <code>:hover</code> переставал работать. Чтобы это исправить, наведение отслеживается на неподвижном родителе, а двигается только картинка внутри него.</p>
       <h3>Нажатие</h3>
+      <figure class="pic pic-right pic-drawing">
+        <img src="../images/lab3/state-press.png" alt="Нажатие: человек машет пальцем, сбоку надпись Меня не удивишь">
+        <figcaption>Нажатие мыши</figcaption>
+      </figure>
       <p>Пока кнопка мыши зажата, работает псевдокласс <code>:active</code>. Появляется третий кадр, рука качается отдельной анимацией, а весь ролик дрожит вправо и влево. Вертикальная надпись «Меня не удивишь» сделана через <code>writing-mode</code>.</p>
+      <p>Дрожание сделано очень короткой анимацией: за 0.18 секунды ролик сдвигается на 1.5 пикселя влево и вправо. Рука - это отдельная картинка, которая лежит поверх туловища и поворачивается на 16 градусов в обе стороны. Когда кнопку мыши отпускают, <code>:active</code> перестает действовать, и ролик сам возвращается к кадру наведения, скрипт для этого не нужен. Сам ролик сделан кнопкой <code>button</code>, поэтому этот кадр можно увидеть и с клавиатуры, если выбрать ролик и удерживать пробел.</p>
     </section>
 
     <section class="box" aria-labelledby="result-title">

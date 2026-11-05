@@ -240,6 +240,20 @@
     padding-right: 0;
   }
 
+  /* на телефоне ответы идут в один столбец */
+  .dom-test .answer {
+    flex: 1 1 100%;
+  }
+
+  /* сильное увеличение обрезалось бы по краю экрана */
+  .dom-test .answer.correct {
+    transform: scale(1.03);
+  }
+
+  .dom-test .answer.correct.gone {
+    transform: translateX(110vw) scale(1.03);
+  }
+
   .dom-test .review {
     margin-left: 0;
   }

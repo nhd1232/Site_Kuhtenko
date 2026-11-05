@@ -18,25 +18,27 @@ body {
 
 /* Шапка */
 .site-header {
+  position: relative;
   padding-top: 14px;
   background: white;
   border-bottom: 1px solid #bdbdbd;
 }
 
 .header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
   padding-bottom: 10px;
 }
 
 .brand {
+  display: flex;
+  align-items: center;
   text-decoration: none;
   color: #214f91;
   font-size: 27px;
   font-weight: bold;
-}
-
-.brand > span {
-  display: inline-block;
-  vertical-align: middle;
 }
 
 .brand small {
@@ -49,6 +51,7 @@ body {
 /* Логотип 40x40px */
 .logo {
   position: relative;
+  flex: none;
   width: 36px;
   height: 36px;
   margin-right: 8px;
@@ -92,6 +95,29 @@ body {
   color: #222;
   font-weight: bold;
   text-decoration: none;
+}
+
+.nav-inner {
+  display: flex;
+}
+
+/* разделитель между пунктами меню */
+.nav-inner a + a {
+  margin-left: 7px;
+  padding-left: 8px;
+  border-left: 1px solid #555;
+}
+
+/* Кнопка меню для телефона работает на checkbox */
+.menu-toggle {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.menu-btn {
+  display: none;
 }
 
 /* Основная часть */
@@ -236,12 +262,20 @@ h3 {
   margin: 4px 0 10px 18px;
 }
 
-/* Рисунок на CSS в тексте, у него размер 200x200px */
-.pic-drawing {
-  width: 200px;
+.pic-narrow {
+  width: 220px;
 }
 
-/* Широкие скриншоты, в маленьком размере их не прочитать */
+.pic-drawing {
+  width: 140px;
+}
+
+.pic-drawing .picture {
+  margin: 0 -60px -60px 0;
+  transform: scale(0.7);
+  transform-origin: 0 0;
+}
+
 .pic-wide {
   width: 420px;
 }
@@ -262,11 +296,6 @@ h3 {
 
 .pics-row .pic img {
   background: #f4f4f4;
-}
-
-/* Шаги рисунка на CSS, у них всегда размер 200x200px */
-.pics-row .drawing-step {
-  flex: 0 0 200px;
 }
 
 /* Исходные картинки с прозрачным фоном */
@@ -331,6 +360,7 @@ h3 {
 
 /* Код */
 pre {
+  clear: both;
   overflow-x: auto;
   padding: 10px 12px;
   background: #f4f4f4;
@@ -381,7 +411,123 @@ code {
   }
 }
 
+/* Планшеты: картинки меньше, чтобы тексту рядом хватало места */
+@media (max-width: 760px) {
+  .pic-left,
+  .pic-right {
+    width: 220px;
+  }
+
+  .pic-drawing {
+    width: 140px;
+  }
+
+  /* широкий скриншот рядом с текстом уже не поместится */
+  .pic-wide {
+    float: none;
+    width: auto;
+    margin: 10px 0;
+  }
+}
+
 @media (max-width: 600px) {
+  .pic-left,
+  .pic-right {
+    width: 180px;
+  }
+
+  .pic-drawing {
+    width: 140px;
+  }
+
+  .pic-wide {
+    width: auto;
+  }
+}
+
+/* Телефоны: меню прячется за кнопку и открывается списком */
+@media (max-width: 520px) {
+  .brand {
+    font-size: 22px;
+  }
+
+  .brand small {
+    font-size: 12px;
+  }
+
+  .menu-btn {
+    display: flex;
+    flex: none;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 10px;
+    border: 1px solid #214f91;
+    background: #d7e5f5;
+    color: #214f91;
+    font-size: 15px;
+    cursor: pointer;
+  }
+
+  /* три полоски значка: сам блок и две тени */
+  .menu-btn::before {
+    content: "";
+    width: 16px;
+    height: 2px;
+    background: #214f91;
+    box-shadow: 0 -5px 0 #214f91, 0 5px 0 #214f91;
+  }
+
+  .menu-toggle:focus-visible ~ .header-inner .menu-btn {
+    outline: 2px solid #214f91;
+    outline-offset: 2px;
+  }
+
+  .site-nav {
+    display: none;
+    padding: 0;
+  }
+
+  .menu-toggle:checked ~ .site-nav {
+    display: block;
+  }
+
+  .nav-inner {
+    flex-direction: column;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .nav-inner a,
+  .nav-inner a + a {
+    margin: 0;
+    padding: 11px 12px;
+    border-left: 0;
+    border-top: 1px solid #c8c8c8;
+    text-decoration: none;
+  }
+}
+
+/* Узкие телефоны: картинка занимает отдельную строку над текстом */
+@media (max-width: 480px) {
+  body {
+    font-size: 16px;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  .intro,
+  .lab,
+  .articles,
+  .box {
+    padding: 12px;
+  }
+
   .pic-left,
   .pic-right {
     float: none;
@@ -390,7 +536,21 @@ code {
     margin: 10px 0;
   }
 
+  /* На телефоне картинка стоит отдельно, поэтому снова в полный размер */
+  .pic-drawing {
+    width: 200px;
+  }
+
+  .pic-drawing .picture {
+    margin: 0;
+    transform: none;
+  }
+
   .pics-row .pic {
     max-width: none;
+  }
+
+  pre {
+    font-size: 13px;
   }
 }

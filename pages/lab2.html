@@ -11,18 +11,20 @@
 </head>
 <body>
   <header class="site-header">
+    <input class="menu-toggle" id="menu-toggle" type="checkbox">
     <div class="container header-inner">
       <a class="brand" href="../index.html" aria-label="DevSpace - главная страница">
         <span class="logo" aria-hidden="true"></span>
         <span>DevSpace<small>Учебный портал начинающего разработчика</small></span>
       </a>
+      <label class="menu-btn" for="menu-toggle">Меню</label>
     </div>
     <nav class="site-nav" aria-label="Основное меню">
       <div class="container nav-inner">
-        <a href="../index.html">Главная</a> |
-        <a class="active" href="labs.html">Лабораторные</a> |
-        <a href="articles.html">Статьи</a> |
-        <a href="coursework.html">Курсовая</a> |
+        <a href="../index.html">Главная</a>
+        <a class="active" href="labs.html">Лабораторные</a>
+        <a href="articles.html">Статьи</a>
+        <a href="coursework.html">Курсовая</a>
         <a href="about.html">О сайте</a>
       </div>
     </nav>
@@ -70,7 +72,7 @@
 
         <div class="lab-row-text">
           <p>В этой работе нужно было нарисовать картинку размером 200 на 200 пикселей только средствами CSS, без файлов-изображений. По варианту на картинке есть небо с облаком, два гриба, пчела и трава, а вокруг них розовая рамка.</p>
-          <p>Рисунок слева - это не картинка, а живая верстка. Если открыть инструменты разработчика в браузере, то можно увидеть все блоки, из которых он собран.</p>
+          <p>Этот рисунок - не картинка, а живая верстка. Если открыть инструменты разработчика в браузере, то можно увидеть все блоки, из которых он собран.</p>
         </div>
       </div>
     </section>
@@ -84,70 +86,28 @@
     <section class="box" aria-labelledby="steps-title">
       <h2 id="steps-title">Ход работы</h2>
       <p>Рисунок делался постепенно, по одному слою. После каждого шага результат сравнивался с заданием.</p>
-      <div class="pics-row">
-        <!-- Шаги сделаны тем же CSS, что и готовый рисунок, в каждом просто меньше деталей -->
-        <figure class="pic drawing-step">
-          <div class="picture" role="img" aria-label="Шаг 1: розовая рамка и голубое небо">
-            <div class="picture__scene" aria-hidden="true"></div>
-          </div>
-          <figcaption>Шаг 1. Рамка и небо</figcaption>
-        </figure>
-        <figure class="pic drawing-step">
-          <div class="picture" role="img" aria-label="Шаг 2: добавлены облако и трава">
-            <div class="picture__scene" aria-hidden="true">
-              <div class="cloud"></div>
-              <div class="grass"></div>
-            </div>
-          </div>
-          <figcaption>Шаг 2. Облако и трава</figcaption>
-        </figure>
-        <figure class="pic drawing-step">
-          <div class="picture" role="img" aria-label="Шаг 3: добавлены два гриба">
-            <div class="picture__scene" aria-hidden="true">
-              <div class="cloud"></div>
-              <div class="mushroom mushroom--large">
-                <div class="mushroom__stem"></div>
-                <div class="mushroom__cap"></div>
-              </div>
-              <div class="mushroom mushroom--small">
-                <div class="mushroom__stem"></div>
-                <div class="mushroom__cap"></div>
-              </div>
-              <div class="grass"></div>
-            </div>
-          </div>
-          <figcaption>Шаг 3. Грибы</figcaption>
-        </figure>
-        <figure class="pic drawing-step">
-          <div class="picture" role="img" aria-label="Шаг 4: добавлена пчела, рисунок готов">
-            <div class="picture__scene" aria-hidden="true">
-              <div class="cloud"></div>
-              <div class="mushroom mushroom--large">
-                <div class="mushroom__stem"></div>
-                <div class="mushroom__cap"></div>
-              </div>
-              <div class="mushroom mushroom--small">
-                <div class="mushroom__stem"></div>
-                <div class="mushroom__cap"></div>
-              </div>
-              <div class="bee">
-                <span class="bee__wing bee__wing--top-left"></span>
-                <span class="bee__wing bee__wing--top-right"></span>
-                <span class="bee__wing bee__wing--bottom-left"></span>
-                <span class="bee__wing bee__wing--bottom-right"></span>
-                <span class="bee__body"></span>
-                <span class="bee__head"></span>
-              </div>
-              <div class="grass"></div>
-            </div>
-          </div>
-          <figcaption>Шаг 4. Пчела</figcaption>
-        </figure>
-      </div>
+      <!-- Шаги сделаны тем же CSS, что и готовый рисунок, в каждом просто меньше деталей -->
       <h3>Шаг 1. Рамка и небо</h3>
+      <figure class="pic pic-left pic-drawing">
+        <div class="picture" role="img" aria-label="Шаг 1: розовая рамка и голубое небо">
+          <div class="picture__scene" aria-hidden="true"></div>
+        </div>
+        <figcaption>Шаг 1. Рамка и небо</figcaption>
+      </figure>
       <p>Розовая рамка получилась за счет внутреннего отступа 10 пикселей у внешнего блока. Внутри него лежит сцена размером 180 на 180 пикселей с линейным градиентом от синего к голубому.</p>
+      <p>С этого шага начинается вся работа, потому что остальные детали лежат внутри сцены и считают свои координаты от ее левого верхнего угла. Для этого у сцены стоит <code>position: relative</code>. Еще у нее указано <code>overflow: hidden</code>, поэтому все, что выходит за край сцены, обрезается и не заезжает на розовую рамку. Это пригодилось для большого гриба, который начинается чуть левее края (<code>left: -5px</code>). У всех блоков рисунка стоит <code>box-sizing: border-box</code>, поэтому рамки и внутренние отступы не увеличивают заданный размер блока, и считать координаты намного проще.</p>
       <h3>Шаг 2. Облако и трава</h3>
-      <p>Облако состоит из одного овала и двух псевдоэлементов <code>::before</code> и <code>::after</code>. У всех трех частей стоит <code>border-radius: 50%</code>. Траву оказалось удобно сделать одним блоком: полоски получаются с помощью повторяющегося градиента, а зубцы вырезаются через <code>clip-path</code>:</p>
+      <figure class="pic pic-right pic-drawing">
+        <div class="picture" role="img" aria-label="Шаг 2: добавлены облако и трава">
+          <div class="picture__scene" aria-hidden="true">
+            <div class="cloud"></div>
+            <div class="grass"></div>
+          </div>
+        </div>
+        <figcaption>Шаг 2. Облако и трава</figcaption>
+      </figure>
+      <p>Облако состоит из одного овала и двух псевдоэлементов <code>::before</code> и <code>::after</code>. У всех трех частей стоит <code>border-radius: 50%</code>. Овал задает ширину облака, а псевдоэлементы расположены относительно него: один немного выше и образует верхнюю часть, другой ниже и делает край неровным. Все три части одного цвета и без рамок, поэтому границ между ними не видно, и они выглядят как одно целое.</p>
+      <p>Траву оказалось удобно сделать одним блоком. Он прижат к низу сцены через <code>bottom: 0</code> и растянут на всю ширину через <code>left: 0</code> и <code>right: 0</code>, поэтому ширину указывать не нужно, достаточно высоты в 44 пикселя. Полоски получаются с помощью повторяющегося градиента, а зубцы вырезаются через <code>clip-path</code>:</p>
       <pre><code>.picture .grass {
   height: 44px;
   background: repeating-linear-gradient(135deg, #32ce28 0 6px, #198c21 6px 11px);
@@ -158,9 +118,53 @@
   );
 }</code></pre>
       <h3>Шаг 3. Грибы</h3>
+      <figure class="pic pic-left pic-drawing">
+        <div class="picture" role="img" aria-label="Шаг 3: добавлены два гриба">
+          <div class="picture__scene" aria-hidden="true">
+            <div class="cloud"></div>
+            <div class="mushroom mushroom--large">
+              <div class="mushroom__stem"></div>
+              <div class="mushroom__cap"></div>
+            </div>
+            <div class="mushroom mushroom--small">
+              <div class="mushroom__stem"></div>
+              <div class="mushroom__cap"></div>
+            </div>
+            <div class="grass"></div>
+          </div>
+        </div>
+        <figcaption>Шаг 3. Грибы</figcaption>
+      </figure>
       <p>Каждый гриб состоит из ножки и шляпки. У шляпки скруглены только верхние углы (<code>border-radius: 50% 50% 0 0</code>), поэтому получается полукруг, а объем создает градиент. Маленький гриб повернут на 25 градусов через <code>transform: rotate(25deg)</code>.</p>
+      <p>Ножка и шляпка лежат внутри общего блока гриба, у которого стоит <code>position: absolute</code>. Поэтому весь гриб можно двигать по сцене одним значением <code>top</code> и <code>left</code>, а детали внутри него остаются на своих местах. Поворот тоже задается всему блоку сразу, и ножка наклоняется вместе со шляпкой. У ножки скруглены только нижние углы, а шляпка лежит поверх нее и закрывает верхний край. Маленький гриб находится выше большого по <code>z-index</code> и частично его перекрывает, а низ обоих грибов закрывает трава.</p>
       <h3>Шаг 4. Пчела</h3>
+      <figure class="pic pic-right pic-drawing">
+        <div class="picture" role="img" aria-label="Шаг 4: добавлена пчела, рисунок готов">
+          <div class="picture__scene" aria-hidden="true">
+            <div class="cloud"></div>
+            <div class="mushroom mushroom--large">
+              <div class="mushroom__stem"></div>
+              <div class="mushroom__cap"></div>
+            </div>
+            <div class="mushroom mushroom--small">
+              <div class="mushroom__stem"></div>
+              <div class="mushroom__cap"></div>
+            </div>
+            <div class="bee">
+              <span class="bee__wing bee__wing--top-left"></span>
+              <span class="bee__wing bee__wing--top-right"></span>
+              <span class="bee__wing bee__wing--bottom-left"></span>
+              <span class="bee__wing bee__wing--bottom-right"></span>
+              <span class="bee__body"></span>
+              <span class="bee__head"></span>
+            </div>
+            <div class="grass"></div>
+          </div>
+        </div>
+        <figcaption>Шаг 4. Пчела</figcaption>
+      </figure>
       <p>Пчела - самая мелкая часть рисунка. Туловище и голова сделаны овалами, глаз и второе пятно на голове сделаны псевдоэлементами. Четыре крыла поворачиваются вокруг точки, заданной через <code>transform-origin</code>, чтобы они расходились от одного места. В конце вся пчела целиком повернута на -30 градусов.</p>
+      <p>Порядок блоков внутри пчелы тоже важен. В разметке сначала идут крылья, а потом туловище и голова, поэтому туловище лежит поверх крыльев и закрывает место, где они сходятся. У верхних крыльев точка поворота находится внизу, а у нижних наверху. Цвет и рамка у всех крыльев общие, отличаются только размеры и углы.</p>
     </section>
 
     <section class="box" aria-labelledby="result-title">

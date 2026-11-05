@@ -11,18 +11,20 @@
 </head>
 <body>
   <header class="site-header">
+    <input class="menu-toggle" id="menu-toggle" type="checkbox">
     <div class="container header-inner">
       <a class="brand" href="../index.html" aria-label="DevSpace - главная страница">
         <span class="logo" aria-hidden="true"></span>
         <span>DevSpace<small>Учебный портал начинающего разработчика</small></span>
       </a>
+      <label class="menu-btn" for="menu-toggle">Меню</label>
     </div>
     <nav class="site-nav" aria-label="Основное меню">
       <div class="container nav-inner">
-        <a href="../index.html">Главная</a> |
-        <a class="active" href="labs.html">Лабораторные</a> |
-        <a href="articles.html">Статьи</a> |
-        <a href="coursework.html">Курсовая</a> |
+        <a href="../index.html">Главная</a>
+        <a class="active" href="labs.html">Лабораторные</a>
+        <a href="articles.html">Статьи</a>
+        <a href="coursework.html">Курсовая</a>
         <a href="about.html">О сайте</a>
       </div>
     </nav>
@@ -33,12 +35,13 @@
 
     <section class="intro">
       <h1>Лабораторные работы</h1>
-      <figure class="pic pic-right">
+      <figure class="pic pic-right pic-narrow">
         <img src="../images/about/mockup-lab.png" alt="Макет страницы с заданием: шапка, меню, описание, работа, ход работы и подвал">
         <figcaption>Рис. 1. Как устроена страница лабораторной</figcaption>
       </figure>
       <p>Здесь собраны лабораторные работы по верстке. У каждой работы есть отдельная страница, на которой можно посмотреть саму работу в живом виде, прочитать задание и описание того, как она выполнялась.</p>
       <p>Все страницы работ устроены одинаково. Сверху находится сама работа, которую можно сразу попробовать, ниже идет задание и подробное описание со скриншотами, а в конце написан вывод. Внизу страницы есть ссылки для перехода к предыдущей и следующей работе. Так в любой работе легко найти нужную часть.</p>
+      <p>Ниже у каждой работы есть краткое описание: что она собой представляет, какие свойства и методы в ней использовались и что оказалось самым сложным. Чтобы перейти к работе, нажмите на ее название или на ссылку «Открыть работу». Работы идут по порядку номеров, поэтому их удобно смотреть одну за другой.</p>
     </section>
 
     <section class="box" aria-labelledby="lab2-title">
@@ -76,7 +79,7 @@
 
     <section class="box" aria-labelledby="lab3-title">
       <h2 id="lab3-title"><a href="lab3.html">3. Flexbox-ролик</a></h2>
-      <figure class="pic pic-left">
+      <figure class="pic pic-left pic-drawing">
         <img src="../images/lab3/state-hover.png" alt="Кадр ролика: человек закрывает лицо рукой, рядом ракета и надпись Как тебе такое">
         <figcaption>Рис. 3. Ролик при наведении мыши</figcaption>
       </figure>

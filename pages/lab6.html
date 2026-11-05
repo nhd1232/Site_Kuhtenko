@@ -11,18 +11,20 @@
 </head>
 <body>
   <header class="site-header">
+    <input class="menu-toggle" id="menu-toggle" type="checkbox">
     <div class="container header-inner">
       <a class="brand" href="../index.html" aria-label="DevSpace - главная страница">
         <span class="logo" aria-hidden="true"></span>
         <span>DevSpace<small>Учебный портал начинающего разработчика</small></span>
       </a>
+      <label class="menu-btn" for="menu-toggle">Меню</label>
     </div>
     <nav class="site-nav" aria-label="Основное меню">
       <div class="container nav-inner">
-        <a href="../index.html">Главная</a> |
-        <a class="active" href="labs.html">Лабораторные</a> |
-        <a href="articles.html">Статьи</a> |
-        <a href="coursework.html">Курсовая</a> |
+        <a href="../index.html">Главная</a>
+        <a class="active" href="labs.html">Лабораторные</a>
+        <a href="articles.html">Статьи</a>
+        <a href="coursework.html">Курсовая</a>
         <a href="about.html">О сайте</a>
       </div>
     </nav>
@@ -106,6 +108,7 @@
         <figcaption>Рис. 4. Конец теста и просмотр правильного ответа</figcaption>
       </figure>
       <p>Когда вопросы заканчиваются, кнопка остается выключенной и показывается статистика. Если нажать на вопрос, под ним откроется блок с правильным ответом и пояснением. Повторное нажатие закрывает его, а при открытии другого вопроса предыдущий блок тоже закрывается.</p>
+      <p>Рядом с каждым вопросом остается зеленая галочка или красный крестик, поэтому сразу видно, где была ошибка. Чтобы проверить весь сценарий, тест приходится проходить несколько раз, потому что порядок вопросов и ответов каждый раз другой. Для этого полезно отвечать то правильно, то неправильно и смотреть, совпадает ли итоговое число со значками рядом с вопросами.</p>
     </section>
 
     <section class="box" aria-labelledby="result-title">

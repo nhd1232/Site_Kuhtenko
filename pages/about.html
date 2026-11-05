@@ -10,18 +10,20 @@
 </head>
 <body>
   <header class="site-header">
+    <input class="menu-toggle" id="menu-toggle" type="checkbox">
     <div class="container header-inner">
       <a class="brand" href="../index.html" aria-label="DevSpace - главная страница">
         <span class="logo" aria-hidden="true"></span>
         <span>DevSpace<small>Учебный портал начинающего разработчика</small></span>
       </a>
+      <label class="menu-btn" for="menu-toggle">Меню</label>
     </div>
     <nav class="site-nav" aria-label="Основное меню">
       <div class="container nav-inner">
-        <a href="../index.html">Главная</a> |
-        <a href="labs.html">Лабораторные</a> |
-        <a href="articles.html">Статьи</a> |
-        <a href="coursework.html">Курсовая</a> |
+        <a href="../index.html">Главная</a>
+        <a href="labs.html">Лабораторные</a>
+        <a href="articles.html">Статьи</a>
+        <a href="coursework.html">Курсовая</a>
         <a class="active" href="about.html">О сайте</a>
       </div>
     </nav>
@@ -48,7 +50,7 @@
           <figcaption>Рис. 2. Макет страницы с заданием</figcaption>
         </figure>
       </div>
-      <p>Таблицы для верстки на сайте не используются. Общая раскладка сделана с помощью Flexbox, а картинки в статьях обтекаются текстом через <code>float</code>. На маленьких экранах блоки переносятся друг под друга, а картинки перестают обтекаться и занимают отдельную строку.</p>
+      <p>Таблицы для верстки на сайте не используются. Общая раскладка сделана с помощью Flexbox, а картинки в статьях и описаниях работ обтекаются текстом через <code>float</code>. Сайт адаптивный: на планшете картинки становятся меньше, а на телефоне блоки переносятся друг под друга и картинки занимают отдельную строку. Меню на телефоне прячется за кнопку и открывается списком, чтобы пункты не разъезжались на два ряда. Кнопка работает на обычном <code>checkbox</code> и псевдоклассе <code>:checked</code>, без JavaScript.</p>
     </section>
 
     <section class="box" aria-labelledby="logo-title">
